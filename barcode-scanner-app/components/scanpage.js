@@ -1,18 +1,21 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 import axios from "axios";
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
+import { Container, Header, Content, Card, CardItem, Body, Button, Text, Item } from 'native-base';
+import ScannedItemCard from "./itemcard";
 
-let url = "192.168.1.7";
+
+const url = "https://fake-server.localtunnel.me";
 
 //STYLING CODE
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems:"center",
+        alignItems: "center",
         flexDirection: "column",
         justifyContent: "center",
     }
@@ -25,7 +28,11 @@ class ScanPage extends Component {
 
         this.state = {
             hasCameraPermission: null,
-            scanned: false
+            scanned: false,
+            itemFound: false,
+            itemName: "",
+            itemPrice: "",
+            itemId: '',
         };
     }
 
@@ -34,42 +41,58 @@ class ScanPage extends Component {
     }
 
     getCameraPermissions = async () => {
-        const { status }  = await Permissions.askAsync(Permissions.CAMERA);
+        const { status } = await Permissions.askAsync(Permissions.CAMERA);
         this.setState({ hasCameraPermission: status === "granted" });
     };
 
     handleBarCodeScan = ({ type, data }) => {
+        let itemFound = null;
+        let itemName,itemPrice,itemId;
         console.log(`getting... ${url}/products `)
-        axios.get(`http://localhost:3000/products`)
-        .then(res => {console.log(res.data)})
-        .catch(rej => {console.log(rej.data)})
-        this.setState({ scanned: true });
+        axios.get(`${url}/products?barcode=${data}`)
+            .then(res => { 
+                let itemArr = [...res.data];
+                if (itemArr.length > 0) {
+                    //console.log(`found`);
+                    itemFound = true;
+                    itemName = itemArr[0].ItemName;
+                    itemPrice = itemArr[0]['price excl GST'];
+                    itemId = itemArr[0].product_id;
+                }
+                else {
+                    //console.log(`notfound`);
+                    itemFound = false;
+                }
+                this.setState({ scanned: true, itemFound:itemFound, itemName:itemName, itemPrice:itemPrice, itemId:itemId });
+             })
+            .catch(rej => { console.log(rej.data) })
+        
     };
 
     render() {
-        const { hasCameraPermission, scanned } = this.state;
+        const { hasCameraPermission, scanned, itemFound, itemName, itemPrice, itemId } = this.state;
 
         if (hasCameraPermission === null) {
-            <View style={styles.container}>
-              <Button
-                        title={"request permission"}
-                        onPress={this.getCameraPermissions}
-                    />
-            </View>
+            <Container style={styles.container}>
+                <Button
+                    title={"request permission"}
+                    onPress={this.getCameraPermissions}
+                />
+            </Container>
         }
         if (hasCameraPermission === false) {
             return (
-            <View style={styles.container}>
-              <Button
+                <Container style={styles.container}>
+                    <Button
                         title={"request permission again"}
                         onPress={this.getCameraPermissions}
                     />
-            </View>
+                </Container>
             );
         }
 
         return (
-            <View style={styles.container}>
+            <Container style={styles.container}>
                 <Text>hello world</Text>
                 <BarCodeScanner
                     onBarCodeScanned={
@@ -79,12 +102,15 @@ class ScanPage extends Component {
                 />
 
                 {scanned && (
-                    <Button
-                        title={"Tap to Scan Again"}
-                        onPress={() => this.setState({ scanned: false })}
+                    <ScannedItemCard 
+                    itemFound = {itemFound}
+                    itemName = {itemName}
+                    itemPrice = {itemPrice}
+                    itemId = {itemId}
+                    clicked={() => {this.setState({scanned : false})}}
                     />
                 )}
-            </View>
+            </Container>
         );
     }
 }
