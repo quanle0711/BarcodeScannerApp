@@ -7,12 +7,11 @@ The App is created with the EXPO - React-native framework.
 
 
 # Packages
+[NgRok](https://ngrok.com/) for local server tunneling
 ```
 npm i -g expo-cli
-```
-```
 npm i -g create-react-native-app
 npm i -g react-native-cli
-npm i --save react-native-scan-barcode
+npm i -g json-server
 ```
 
