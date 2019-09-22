@@ -1,382 +1,447 @@
 {
-    "products": [
-        {
-            "product_id": "394928",
-            "Itemnumber": "45500",
-            "ItemName": "RXL BINDING COMBS/COIL 6MM BLK BX100",
-            "barcode": "5010255455000",
-            "price excl GST": "10.45"
-        },
-        {
-            "product_id": "394929",
-            "Itemnumber": "45525",
-            "ItemName": "RXL BINDING COMBS/COIL 9.5MM BLK BX100",
-            "barcode": "5010255455253",
-            "price excl GST": "14.61"
-        },
-        {
-            "product_id": "394936",
-            "Itemnumber": "41621",
-            "ItemName": "RXL L/POUCH GLOSS A4 2X75M",
-            "barcode": "5010255823557",
-            "price excl GST": "36.78"
-        },
-        {
-            "product_id": "509663",
-            "Itemnumber": "136250CHA",
-            "ItemName": "ESSELTE SWS C/FILE BOX 127X76MM(5X3)CHAR",
-            "barcode": "9310924140623",
-            "price excl GST": "14.34"
-        },
-        {
-            "product_id": "509664",
-            "Itemnumber": "136260CHA",
-            "ItemName": "ESSELTE SWS C/FILE BOX 152X102MM(6X4)CHA",
-            "barcode": "9310924140685",
-            "price excl GST": "18.64"
-        },
-        {
-            "product_id": "509389",
-            "Itemnumber": "106344",
-            "ItemName": "ARTLINE 63 CLIX H/LIGHTER ASST WALLET 4",
-            "barcode": "4974052848254",
-            "price excl GST": "28.51"
-        },
-        {
-            "product_id": "509387",
-            "Itemnumber": "106307",
-            "ItemName": "ARTLINE 63 CLIX HIGHLIGHTER YELLOW",
-            "barcode": "4974052846113",
-            "price excl GST": "7.37"
-        },
-        {
-            "product_id": "509388",
-            "Itemnumber": "106341",
-            "ItemName": "ARTLINE 63 CLIX HIGHLIGHTER 6 COL ASSORT",
-            "barcode": "4974052847721",
-            "price excl GST": "88.42"
-        },
-        {
-            "product_id": "394952",
-            "Itemnumber": "23520303",
-            "ItemName": "FINGER CONES BOX 10 SIZE 00",
-            "barcode": "5014453203036",
-            "price excl GST": "14.06"
-        },
-        {
-            "product_id": "394953",
-            "Itemnumber": "23520304",
-            "ItemName": "FINGER CONES BOX 10 SIZE 0",
-            "barcode": "5014453203043",
-            "price excl GST": "14.06"
-        },
-        {
-            "product_id": "394954",
-            "Itemnumber": "23520305",
-            "ItemName": "FINGER CONES BOX 10 SIZE 1",
-            "barcode": "5014453203050",
-            "price excl GST": "14.06"
-        },
-        {
-            "product_id": "394955",
-            "Itemnumber": "23520306",
-            "ItemName": "FINGER CONES BOX 10 SIZE 2",
-            "barcode": "5014453203067",
-            "price excl GST": "14.06"
-        },
-        {
-            "product_id": "394956",
-            "Itemnumber": "23520307",
-            "ItemName": "FINGER CONES BOX 10 SIZE 3",
-            "barcode": "5014453203074",
-            "price excl GST": "14.06"
-        },
-        {
-            "product_id": "394970",
-            "Itemnumber": "2100050",
-            "ItemName": "RXL STAPLES ODYSSEY 2500BX",
-            "barcode": "5028252048569",
-            "price excl GST": "23.91"
-        },
-        {
-            "product_id": "512453",
-            "Itemnumber": "BL125M25A6CR",
-            "ItemName": "CREATIVE A6 125 MICRON POUCHES 25PK",
-            "barcode": "5019577216511",
-            "price excl GST": "14.85"
-        },
-        {
-            "product_id": "512458",
-            "Itemnumber": "BL125MA3CR",
-            "ItemName": "CREATIVE A3 125 MICRON POUCHES 100PK",
-            "barcode": "9324213009331",
-            "price excl GST": "147.71"
-        },
-        {
-            "product_id": "512460",
-            "Itemnumber": "BL125MA4CR",
-            "ItemName": "CREATIVE A4 125 MICRON POUCHES 100PK",
-            "barcode": "9324213009317",
-            "price excl GST": "56.94"
-        },
-        {
-            "product_id": "394989",
-            "Itemnumber": "2101085",
-            "ItemName": "RXL LAMINATOR LP25HS 4 ROLLER A4",
-            "barcode": "5028252138116",
-            "price excl GST": "309.34"
-        },
-        {
-            "product_id": "511316",
-            "Itemnumber": "5011300",
-            "ItemName": "XSTAMPER CX-BN 1130 CONFIDENTIAL RED",
-            "barcode": "4974052915604",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511317",
-            "Itemnumber": "5011380",
-            "ItemName": "XSTAMPER CX-BN 1138 CLIENTS COPY BLUE",
-            "barcode": "4974052915758",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511318",
-            "Itemnumber": "5011710",
-            "ItemName": "XSTAMPER CX-BN 1171 OVERDUE RED",
-            "barcode": "4974052967139",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511319",
-            "Itemnumber": "5011962",
-            "ItemName": "XSTAMPER CX-BN 1196 SCANNED RED",
-            "barcode": "4974052995729",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511320",
-            "Itemnumber": "5011972",
-            "ItemName": "XSTAMPER CX-BN 1197 SCANNED/DATE RED",
-            "barcode": "4974052995736",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511321",
-            "Itemnumber": "5012010",
-            "ItemName": "XSTAMPER CX-BN 1201 PAID/DATE BLUE",
-            "barcode": "4974052912917",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511322",
-            "Itemnumber": "5012030",
-            "ItemName": "XSTAMPER CX-BN 1203 RECEIVED/DATE BLUE",
-            "barcode": "4974052912955",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511323",
-            "Itemnumber": "5012050",
-            "ItemName": "XSTAMPER CX-BN 1205 ENTERED/DATE BLUE",
-            "barcode": "4974052912993",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511324",
-            "Itemnumber": "5012052",
-            "ItemName": "XSTAMPER CX-BN 1205 ENTERED/DATE RED",
-            "barcode": "4974052913006",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511325",
-            "Itemnumber": "5012110",
-            "ItemName": "XSTAMPER CX-BN 1211 POSTED DATE RED",
-            "barcode": "4974052913129",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511326",
-            "Itemnumber": "5012212",
-            "ItemName": "XSTAMPER CX-BN 1221 PAID RED",
-            "barcode": "4974052913167",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511327",
-            "Itemnumber": "5013140",
-            "ItemName": "XSTAMPER CX-BN 1314 PROCESSED RED",
-            "barcode": "4974052904363",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511328",
-            "Itemnumber": "5013360",
-            "ItemName": "XSTAMPER CX-BN 1336 COPY RED",
-            "barcode": "4974052904806",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511329",
-            "Itemnumber": "5013440",
-            "ItemName": "XSTAMPER CX-BN 1344 THISACCT OVERDUE RED",
-            "barcode": "4974052904967",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511330",
-            "Itemnumber": "5013460",
-            "ItemName": "XSTAMPER CX-BN 1346 FAXED RED",
-            "barcode": "4974052905001",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511331",
-            "Itemnumber": "5013500",
-            "ItemName": "XSTAMPER CX-BN 1350 FAXED/DATE RED",
-            "barcode": "4974052905070",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511332",
-            "Itemnumber": "5013570",
-            "ItemName": "XSTAMPER CX-BN 1357 PAID BLUE",
-            "barcode": "4974052964053",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511333",
-            "Itemnumber": "5013660",
-            "ItemName": "XSTAMPER CX-BN 1366 SUPERSEDED RED",
-            "barcode": "4974052911378",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511334",
-            "Itemnumber": "5015330",
-            "ItemName": "XSTAMPER CX-BN 1533 PAID/DATE/CHQ NO RED",
-            "barcode": "4974052964220",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511335",
-            "Itemnumber": "5015340",
-            "ItemName": "XSTAMPER CX-BN 1534 ENTERED/DATE/BY RED",
-            "barcode": "4974052964251",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511336",
-            "Itemnumber": "5015412",
-            "ItemName": "XSTAMPER CX-BN 1541 CERT.TRUE COPY RED",
-            "barcode": "4974052971167",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "511337",
-            "Itemnumber": "5015422",
-            "ItemName": "XSTAMPER CX-BN1542 COMPLETED DATE\\BY RED",
-            "barcode": "4974052971174",
-            "price excl GST": "20.9"
-        },
-        {
-            "product_id": "395010",
-            "Itemnumber": "848100",
-            "ItemName": "MBG KRAFT PAPER DISPENSER BOX W/ROLL",
-            "barcode": "9312311001845",
-            "price excl GST": "56.54"
-        },
-        {
-            "product_id": "395016",
-            "Itemnumber": "2015000",
-            "ItemName": "MBG DOCULOPE PP A4 CLEAR",
-            "barcode": "9312311020150",
-            "price excl GST": "1.9"
-        },
-        {
-            "product_id": "395022",
-            "Itemnumber": "975311",
-            "ItemName": "MBG BINDERMATE 2 HOLE PUNCH S/COLOURS",
-            "barcode": "9312311053110",
-            "price excl GST": "4.73"
-        },
-        {
-            "product_id": "395024",
-            "Itemnumber": "975476",
-            "ItemName": "MBG ORANGE HANDLE SCISSORS 215MM",
-            "barcode": "9312311054766",
-            "price excl GST": "3.82"
-        },
-        {
-            "product_id": "395027",
-            "Itemnumber": "975520",
-            "ItemName": "MBG 21GM GLUE STICK DISPLAY",
-            "barcode": "9312311055206",
-            "price excl GST": "3.3"
-        },
-        {
-            "product_id": "395035",
-            "Itemnumber": "975428",
-            "ItemName": "MBG STAPLER & STAPLES MINI 26/6 1000BX",
-            "barcode": "9312311058108",
-            "price excl GST": "6.27"
-        },
-        {
-            "product_id": "395040",
-            "Itemnumber": "87028",
-            "ItemName": "MBG TAPE DISPENSER PACKAGING GUN",
-            "barcode": "9312311087283",
-            "price excl GST": "12.91"
-        },
-        {
-            "product_id": "395047",
-            "Itemnumber": "18960",
-            "ItemName": "NOTEBOOK RED & BLACK A4 200PGS",
-            "barcode": "9312311147093",
-            "price excl GST": "8.47"
-        },
-        {
-            "product_id": "395048",
-            "Itemnumber": "18961",
-            "ItemName": "NOTEBOOK RED & BLACK A4 W/ INDEX 200PGS",
-            "barcode": "9312311147116",
-            "price excl GST": "13.39"
-        },
-        {
-            "product_id": "395055",
-            "Itemnumber": "86350",
-            "ItemName": "MBG ENVIRO FOLDARACK",
-            "barcode": "9312311149929",
-            "price excl GST": "34.96"
-        },
-        {
-            "product_id": "395058",
-            "Itemnumber": "86380",
-            "ItemName": "MBG ENVIRO DESK DRAWER TIDY",
-            "barcode": "9312311150321",
-            "price excl GST": "10.14"
-        },
-        {
-            "product_id": "509392",
-            "Itemnumber": "107003",
-            "ItemName": "ARTLINE 70 PERMANENT MARKER BLUE",
-            "barcode": "4974052801310",
-            "price excl GST": "4.69"
-        },
-        {
-            "product_id": "509393",
-            "Itemnumber": "107004",
-            "ItemName": "ARTLINE 70 PERMANENT MARKER GREEN",
-            "barcode": "4974052801334",
-            "price excl GST": "4.69"
-        },
-        {
-            "product_id": "509394",
-            "Itemnumber": "107041",
-            "ItemName": "ARTLINE 70 PERMANENT MARKER 8 COL ASST",
-            "barcode": "4974052801600",
-            "price excl GST": "56.21"
-        }
-    ]
+  "products": [
+    {
+      "product_id": "394928",
+      "Itemnumber": "45500",
+      "ItemName": "RXL BINDING COMBS/COIL 6MM BLK BX100",
+      "barcode": "5010255455000",
+      "id": "1",
+      "price excl GST": "10.45"
+    },
+    {
+      "product_id": "394929",
+      "Itemnumber": "45525",
+      "ItemName": "RXL BINDING COMBS/COIL 9.5MM BLK BX100",
+      "barcode": "5010255455253",
+      "id": "2",
+      "price excl GST": "14.61"
+    },
+    {
+      "product_id": "394936",
+      "Itemnumber": "41621",
+      "ItemName": "RXL L/POUCH GLOSS A4 2X75M",
+      "barcode": "5010255823557",
+      "id": "3",
+      "price excl GST": "36.78"
+    },
+    {
+      "product_id": "509663",
+      "Itemnumber": "136250CHA",
+      "ItemName": "ESSELTE SWS C/FILE BOX 127X76MM(5X3)CHAR",
+      "barcode": "9310924140623",
+      "id": "4",
+      "price excl GST": "14.34"
+    },
+    {
+      "product_id": "509664",
+      "Itemnumber": "136260CHA",
+      "ItemName": "ESSELTE SWS C/FILE BOX 152X102MM(6X4)CHA",
+      "barcode": "9310924140685",
+      "id": "5",
+      "price excl GST": "18.64"
+    },
+    {
+      "product_id": "509389",
+      "Itemnumber": "106344",
+      "ItemName": "ARTLINE 63 CLIX H/LIGHTER ASST WALLET 4",
+      "barcode": "4974052848254",
+      "id": "6",
+      "price excl GST": "28.51"
+    },
+    {
+      "product_id": "509387",
+      "Itemnumber": "106307",
+      "ItemName": "ARTLINE 63 CLIX HIGHLIGHTER YELLOW",
+      "barcode": "4974052846113",
+      "id": "7",
+      "price excl GST": "7.37"
+    },
+    {
+      "product_id": "509388",
+      "Itemnumber": "106341",
+      "ItemName": "ARTLINE 63 CLIX HIGHLIGHTER 6 COL ASSORT",
+      "barcode": "4974052847721",
+      "id": "8",
+      "price excl GST": "88.42"
+    },
+    {
+      "product_id": "394952",
+      "Itemnumber": "23520303",
+      "ItemName": "FINGER CONES BOX 10 SIZE 00",
+      "barcode": "5014453203036",
+      "id": "9",
+      "price excl GST": "14.06"
+    },
+    {
+      "product_id": "394953",
+      "Itemnumber": "23520304",
+      "ItemName": "FINGER CONES BOX 10 SIZE 0",
+      "barcode": "5014453203043",
+      "id": "10",
+      "price excl GST": "14.06"
+    },
+    {
+      "product_id": "394954",
+      "Itemnumber": "23520305",
+      "ItemName": "FINGER CONES BOX 10 SIZE 1",
+      "barcode": "5014453203050",
+      "id": "11",
+      "price excl GST": "14.06"
+    },
+    {
+      "product_id": "394955",
+      "Itemnumber": "23520306",
+      "ItemName": "FINGER CONES BOX 10 SIZE 2",
+      "barcode": "5014453203067",
+      "id": "12",
+      "price excl GST": "14.06"
+    },
+    {
+      "product_id": "394956",
+      "Itemnumber": "23520307",
+      "ItemName": "FINGER CONES BOX 10 SIZE 3",
+      "barcode": "5014453203074",
+      "id": "13",
+      "price excl GST": "14.06"
+    },
+    {
+      "product_id": "394970",
+      "Itemnumber": "2100050",
+      "ItemName": "RXL STAPLES ODYSSEY 2500BX",
+      "barcode": "5028252048569",
+      "id": "14",
+      "price excl GST": "23.91"
+    },
+    {
+      "product_id": "512453",
+      "Itemnumber": "BL125M25A6CR",
+      "ItemName": "CREATIVE A6 125 MICRON POUCHES 25PK",
+      "barcode": "5019577216511",
+      "id": "15",
+      "price excl GST": "14.85"
+    },
+    {
+      "product_id": "512458",
+      "Itemnumber": "BL125MA3CR",
+      "ItemName": "CREATIVE A3 125 MICRON POUCHES 100PK",
+      "barcode": "9324213009331",
+      "id": "16",
+      "price excl GST": "147.71"
+    },
+    {
+      "product_id": "512460",
+      "Itemnumber": "BL125MA4CR",
+      "ItemName": "CREATIVE A4 125 MICRON POUCHES 100PK",
+      "barcode": "9324213009317",
+      "id": "17",
+      "price excl GST": "56.94"
+    },
+    {
+      "product_id": "394989",
+      "Itemnumber": "2101085",
+      "ItemName": "RXL LAMINATOR LP25HS 4 ROLLER A4",
+      "barcode": "5028252138116",
+      "id": "18",
+      "price excl GST": "309.34"
+    },
+    {
+      "product_id": "511316",
+      "Itemnumber": "5011300",
+      "ItemName": "XSTAMPER CX-BN 1130 CONFIDENTIAL RED",
+      "barcode": "4974052915604",
+      "id": "19",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511317",
+      "Itemnumber": "5011380",
+      "ItemName": "XSTAMPER CX-BN 1138 CLIENTS COPY BLUE",
+      "barcode": "4974052915758",
+      "id": "20",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511318",
+      "Itemnumber": "5011710",
+      "ItemName": "XSTAMPER CX-BN 1171 OVERDUE RED",
+      "barcode": "4974052967139",
+      "id": "21",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511319",
+      "Itemnumber": "5011962",
+      "ItemName": "XSTAMPER CX-BN 1196 SCANNED RED",
+      "barcode": "4974052995729",
+      "id": "22",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511320",
+      "Itemnumber": "5011972",
+      "ItemName": "XSTAMPER CX-BN 1197 SCANNED/DATE RED",
+      "barcode": "4974052995736",
+      "id": "23",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511321",
+      "Itemnumber": "5012010",
+      "ItemName": "XSTAMPER CX-BN 1201 PAID/DATE BLUE",
+      "barcode": "4974052912917",
+      "id": "24",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511322",
+      "Itemnumber": "5012030",
+      "ItemName": "XSTAMPER CX-BN 1203 RECEIVED/DATE BLUE",
+      "barcode": "4974052912955",
+      "id": "25",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511323",
+      "Itemnumber": "5012050",
+      "ItemName": "XSTAMPER CX-BN 1205 ENTERED/DATE BLUE",
+      "barcode": "4974052912993",
+      "id": "26",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511324",
+      "Itemnumber": "5012052",
+      "ItemName": "XSTAMPER CX-BN 1205 ENTERED/DATE RED",
+      "barcode": "4974052913006",
+      "id": "27",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511325",
+      "Itemnumber": "5012110",
+      "ItemName": "XSTAMPER CX-BN 1211 POSTED DATE RED",
+      "barcode": "4974052913129",
+      "id": "28",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511326",
+      "Itemnumber": "5012212",
+      "ItemName": "XSTAMPER CX-BN 1221 PAID RED",
+      "barcode": "4974052913167",
+      "id": "29",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511327",
+      "Itemnumber": "5013140",
+      "ItemName": "XSTAMPER CX-BN 1314 PROCESSED RED",
+      "barcode": "4974052904363",
+      "id": "30",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511328",
+      "Itemnumber": "5013360",
+      "ItemName": "XSTAMPER CX-BN 1336 COPY RED",
+      "barcode": "4974052904806",
+      "id": "31",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511329",
+      "Itemnumber": "5013440",
+      "ItemName": "XSTAMPER CX-BN 1344 THISACCT OVERDUE RED",
+      "barcode": "4974052904967",
+      "id": "32",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511330",
+      "Itemnumber": "5013460",
+      "ItemName": "XSTAMPER CX-BN 1346 FAXED RED",
+      "barcode": "4974052905001",
+      "id": "33",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511331",
+      "Itemnumber": "5013500",
+      "ItemName": "XSTAMPER CX-BN 1350 FAXED/DATE RED",
+      "barcode": "4974052905070",
+      "id": "34",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511332",
+      "Itemnumber": "5013570",
+      "ItemName": "XSTAMPER CX-BN 1357 PAID BLUE",
+      "barcode": "4974052964053",
+      "id": "35",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511333",
+      "Itemnumber": "5013660",
+      "ItemName": "XSTAMPER CX-BN 1366 SUPERSEDED RED",
+      "barcode": "4974052911378",
+      "id": "36",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511334",
+      "Itemnumber": "5015330",
+      "ItemName": "XSTAMPER CX-BN 1533 PAID/DATE/CHQ NO RED",
+      "barcode": "4974052964220",
+      "id": "37",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511335",
+      "Itemnumber": "5015340",
+      "ItemName": "XSTAMPER CX-BN 1534 ENTERED/DATE/BY RED",
+      "barcode": "4974052964251",
+      "id": "38",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511336",
+      "Itemnumber": "5015412",
+      "ItemName": "XSTAMPER CX-BN 1541 CERT.TRUE COPY RED",
+      "barcode": "4974052971167",
+      "id": "39",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "511337",
+      "Itemnumber": "5015422",
+      "ItemName": "XSTAMPER CX-BN1542 COMPLETED DATE\\BY RED",
+      "barcode": "4974052971174",
+      "id": "40",
+      "price excl GST": "20.9"
+    },
+    {
+      "product_id": "395010",
+      "Itemnumber": "848100",
+      "ItemName": "MBG KRAFT PAPER DISPENSER BOX W/ROLL",
+      "barcode": "9312311001845",
+      "id": "41",
+      "price excl GST": "56.54"
+    },
+    {
+      "product_id": "395016",
+      "Itemnumber": "2015000",
+      "ItemName": "MBG DOCULOPE PP A4 CLEAR",
+      "barcode": "9312311020150",
+      "id": "42",
+      "price excl GST": "1.9"
+    },
+    {
+      "product_id": "395022",
+      "Itemnumber": "975311",
+      "ItemName": "MBG BINDERMATE 2 HOLE PUNCH S/COLOURS",
+      "barcode": "9312311053110",
+      "id": "43",
+      "price excl GST": "4.73"
+    },
+    {
+      "product_id": "395024",
+      "Itemnumber": "975476",
+      "ItemName": "MBG ORANGE HANDLE SCISSORS 215MM",
+      "barcode": "9312311054766",
+      "id": "44",
+      "price excl GST": "3.82"
+    },
+    {
+      "product_id": "395027",
+      "Itemnumber": "975520",
+      "ItemName": "MBG 21GM GLUE STICK DISPLAY",
+      "barcode": "9312311055206",
+      "id": "45",
+      "price excl GST": "3.3"
+    },
+    {
+      "product_id": "395035",
+      "Itemnumber": "975428",
+      "ItemName": "MBG STAPLER & STAPLES MINI 26/6 1000BX",
+      "barcode": "9312311058108",
+      "id": "46",
+      "price excl GST": "6.27"
+    },
+    {
+      "product_id": "395040",
+      "Itemnumber": "87028",
+      "ItemName": "MBG TAPE DISPENSER PACKAGING GUN",
+      "barcode": "9312311087283",
+      "id": "47",
+      "price excl GST": "12.91"
+    },
+    {
+      "product_id": "395047",
+      "Itemnumber": "18960",
+      "ItemName": "NOTEBOOK RED & BLACK A4 200PGS",
+      "barcode": "9312311147093",
+      "id": "48",
+      "price excl GST": "8.47"
+    },
+    {
+      "product_id": "395048",
+      "Itemnumber": "18961",
+      "ItemName": "NOTEBOOK RED & BLACK A4 W/ INDEX 200PGS",
+      "barcode": "9312311147116",
+      "id": "49",
+      "price excl GST": "13.39"
+    },
+    {
+      "product_id": "395055",
+      "Itemnumber": "86350",
+      "ItemName": "MBG ENVIRO FOLDARACK",
+      "barcode": "9312311149929",
+      "id": "50",
+      "price excl GST": "34.96"
+    },
+    {
+      "product_id": "395058",
+      "Itemnumber": "86380",
+      "ItemName": "MBG ENVIRO DESK DRAWER TIDY",
+      "barcode": "9312311150321",
+      "id": "51",
+      "price excl GST": "10.14"
+    },
+    {
+      "product_id": "509392",
+      "Itemnumber": "107003",
+      "ItemName": "ARTLINE 70 PERMANENT MARKER BLUE",
+      "barcode": "4974052801310",
+      "id": "52",
+      "price excl GST": "4.69"
+    },
+    {
+      "product_id": "509393",
+      "Itemnumber": "107004",
+      "ItemName": "ARTLINE 70 PERMANENT MARKER GREEN",
+      "barcode": "4974052801334",
+      "id": "53",
+      "price excl GST": "4.69"
+    },
+    {
+      "product_id": "509394",
+      "Itemnumber": "107041",
+      "ItemName": "ARTLINE 70 PERMANENT MARKER 8 COL ASST",
+      "barcode": "4974052801600",
+      "id": "54",
+      "price excl GST": "56.21"
+    },
+    {
+      "id": "IDzinaD"
+    },
+    {
+      "id": "111222",
+      "product_id": "111222",
+      "Itemnumber": "122314",
+      "ItemName": "",
+      "barcode": "1234567891011",
+      "price excl GST": "111222"
+    }
+  ]
 }
