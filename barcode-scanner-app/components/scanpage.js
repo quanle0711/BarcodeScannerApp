@@ -9,7 +9,7 @@ import { Container, Header, Content, Card, CardItem, Body, Button, Text, Item } 
 import ScannedItemCard from "./itemcard";
 
 
-const url = "https://fake-server.localtunnel.me";
+const url = "https://fakeserver.localtunnel.me";
 
 //STYLING CODE
 const styles = StyleSheet.create({
