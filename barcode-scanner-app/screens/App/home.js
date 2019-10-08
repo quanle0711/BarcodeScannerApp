@@ -1,21 +1,24 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
-import { Container, Header, Content, Button, Text, H1 } from "native-base";
-import { Col, Row, Grid } from "react-native-easy-grid";
+import { StyleSheet, AsyncStorage } from "react-native";
+import { Container, Button, Text, H1 } from "native-base";
+
+//redux
+import { connect } from "react-redux";
+import { removeUserToken } from "../../store/actions/actions";
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
+        flex: 1,
         padding: 20,
-        alignItems:"center",
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center"
     },
     text: {
         fontSize: 30,
         textAlign: "center"
     },
     button: {
-        marginVertical: 10,
+        marginVertical: 10
     }
 });
 
@@ -24,7 +27,8 @@ class Home extends Component {
         return (
             <Container style={styles.container}>
                 <H1 style={styles.text}>Barcode Scanner</H1>
-                <Button style={styles.button}
+                <Button
+                    style={styles.button}
                     rounded
                     onPress={() => {
                         this.props.navigation.navigate("Scan");
@@ -32,7 +36,8 @@ class Home extends Component {
                 >
                     <Text>Scan Item</Text>
                 </Button>
-                <Button style={styles.button}
+                <Button
+                    style={styles.button}
                     rounded
                     onPress={() => {
                         this.props.navigation.navigate("Add");
@@ -40,9 +45,42 @@ class Home extends Component {
                 >
                     <Text>Add Item</Text>
                 </Button>
+
+                <Button
+                    style={styles.button}
+                    rounded
+                    onPress={() => {
+                        this.logOutAsync();
+                    }}
+                >
+                    <Text>Log out</Text>
+                </Button>
             </Container>
         );
     }
+
+    logOutAsync = async () => {
+        await this.props
+            .removeUserToken()
+            .then(() => {
+                console.log("[logout] " + this.props.token);
+                this.props.navigation.navigate("Auth");
+            })
+            .catch(err => {
+                console.log("[logout] " + err);
+            });
+    };
 }
 
-export default Home;
+const mapStateToProps = state => ({
+    token: state.auth.token
+});
+
+const mapDispatchToProps = dispatch => ({
+    removeUserToken: () => dispatch(removeUserToken())
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Home);

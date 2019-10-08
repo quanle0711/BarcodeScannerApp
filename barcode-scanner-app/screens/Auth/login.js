@@ -1,39 +1,52 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import {
-    Container, Header, Content, Button, Text, H1, Form, Item, Input, Label,
+    Container,
+    Button,
+    Text,
+    H1,
+    Form,
+    Item,
+    Input,
+    Label
 } from "native-base";
+
+import { connect } from "react-redux";
+import { setUserToken } from "../../store/actions/actions";
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
-        justifyContent:'center',
+        flex: 1,
+        justifyContent: "center"
     },
     text: {
-        textAlign:"center",
+        textAlign: "center"
     },
     button: {
-        marginHorizontal:10,
-        marginVertical :10,
+        marginHorizontal: 10,
+        marginVertical: 10
     }
 });
 
-export default class LoginPage extends Component {
+class LoginPage extends Component {
     static navigationOptions = {
-        title: 'please sign in',
-    }
+        title: "please sign in"
+    };
 
     constructor(props) {
         super(props);
-    }
-
-    buttonHandler = () => {
-        this.props.navigation.navigate('App');
+        this.state = {
+            emailField: ""
+        };
     }
 
     registerButtonHandler = () => {
-        this.props.navigation.navigate('Register');
-    }
+        this.props.navigation.navigate("Register");
+    };
+
+    forgotPasswordButtonHandler = () => {
+        this.props.navigation.navigate("Register");
+    };
     render() {
         return (
             <Container style={styles.container}>
@@ -43,6 +56,9 @@ export default class LoginPage extends Component {
                         <Label>Email</Label>
                         <Input
                             keyboardType="email-address"
+                            onChangeText={emailField =>
+                                this.setState({ emailField })
+                            }
                         />
                     </Item>
                     <Item floatingLabel>
@@ -51,25 +67,45 @@ export default class LoginPage extends Component {
                     </Item>
                 </Form>
 
-                <Button
-                    style={styles.button}
-                    onPress={this.buttonHandler}
-                >
+                <Button style={styles.button} onPress={this.loginAsync}>
                     <Text>Log in</Text>
                 </Button>
-                <Button info
+                <Button
+                    info
                     style={styles.button}
                     onPress={this.registerButtonHandler}
                 >
                     <Text>Register</Text>
                 </Button>
-                <Button transparent
+                <Button
+                    transparent
                     style={styles.button}
-                    onPress={this.buttonHandler}
+                    onPress={this.forgotPasswordButtonHandler}
                 >
                     <Text>I forgot my password</Text>
                 </Button>
             </Container>
-        )
+        );
     }
+
+    loginAsync = () => {
+        this.props.setUserToken(this.state.emailField)
+            .then(() => {
+                console.log("[LOGIN]" + this.props.token);
+                this.props.navigation.navigate("App");
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
 }
+const mapStateToProps = state => ({
+    token: state.auth.token
+});
+const mapDispatchToProps = dispatch => ({
+    setUserToken: value => dispatch(setUserToken(value))
+});
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LoginPage);
