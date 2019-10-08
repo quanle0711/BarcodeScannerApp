@@ -13,7 +13,7 @@ import {
 } from "native-base";
 import axios from "axios";
 
-const url = "http://799e07ea.ngrok.io";
+const url = "http://9756e40f.ngrok.io";
 
 const styles = StyleSheet.create({
     container: {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     }
 });
 
-class Home extends Component {
+class AddPage extends Component {
     constructor(props) {
         super(props);
 
@@ -108,7 +108,7 @@ class Home extends Component {
                     <Item fixedLabel>
                         <Label>Item Name</Label>
                         <Input
-                            onChangeText={itemName => itemName =>
+                            onChangeText={itemName =>
                                 this.setState({ itemName })}
                         />
                     </Item>
@@ -161,4 +161,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default AddPage;

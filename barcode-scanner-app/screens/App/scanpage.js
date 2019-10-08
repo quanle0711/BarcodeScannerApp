@@ -16,9 +16,9 @@ import {
     Text,
     Item
 } from "native-base";
-import ScannedItemCard from "./itemcard";
+import ScannedItemCard from "../../components/itemcard";
 
-const url = "http://799e07ea.ngrok.io";
+const url = "http://9756e40f.ngrok.io";
 
 //STYLING CODE
 const styles = StyleSheet.create({

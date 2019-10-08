@@ -442,6 +442,14 @@
       "ItemName": "",
       "barcode": "1234567891011",
       "price excl GST": "111222"
+    },
+    {
+      "id": "555555",
+      "product_id": "555555",
+      "Itemnumber": "555555",
+      "ItemName": "",
+      "barcode": "1234567891011",
+      "price excl GST": "2222.22"
     }
   ]
 }
