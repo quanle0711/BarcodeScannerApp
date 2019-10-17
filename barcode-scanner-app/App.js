@@ -8,29 +8,32 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 //screens
-import LoginPage from "./screens/Auth/login";
-import RegisterPage from "./screens/Auth/register";
-import AuthLoadingPage from "./screens/Auth/authLoading";
-import ForgotPasswordPage  from "./screens/Auth/forgotpassword";
-import Home from "./screens/App/home";
-import ScanPage from "./screens/App/scanpage";
-import AddPage from "./screens/App/addpage";
+import LoginPage from "./src/screens/Auth/login";
+import RegisterPage from "./src/screens/Auth/register";
+import AuthLoadingPage from "./src/screens/Auth/authLoading";
+import ForgotPasswordPage  from "./src/screens/Auth/forgotPassword";
+import Home from "./src/screens/Main/mainMenu";
+import ScanCamera from "./src/screens/Main/Scan/scanCamera";
+import AddPage from "./src/screens/Main/Scan/addPage";
 
 //Redux
 
 import { Provider } from 'react-redux'; 
-import Store from "./store";
+import Store from "./src/store";
 
 
 const AppStack = createStackNavigator(
   {
     Home: Home,
-    Scan: ScanPage,
+    Scan: ScanCamera,
     Add: AddPage
   },
+  {headerLayoutPreset: 'center'}
+  ,
   {
     initialRouteName: 'Home',
-  })
+  }
+  )
 
 const AuthStack = createStackNavigator(
   {
@@ -38,6 +41,7 @@ const AuthStack = createStackNavigator(
     Register: RegisterPage,
     ForgotPassword: ForgotPasswordPage
   }
+  ,{headerLayoutPreset: 'center'}
   , {
     initialRouteName: 'Login'
   }

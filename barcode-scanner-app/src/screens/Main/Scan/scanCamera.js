@@ -16,7 +16,7 @@ import {
     Text,
     Item
 } from "native-base";
-import ScannedItemCard from "../../components/itemcard";
+import ScannedItemCard from "../../../components/itemCard";
 
 const url = "http://9756e40f.ngrok.io";
 
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 });
 
 //FUNCTIONAL CODE
-class ScanPage extends Component {
+class ScanCamera extends Component {
     constructor(props) {
         super(props);
 
@@ -152,4 +152,4 @@ class ScanPage extends Component {
     }
 }
 
-export default ScanPage;
+export default ScanCamera;

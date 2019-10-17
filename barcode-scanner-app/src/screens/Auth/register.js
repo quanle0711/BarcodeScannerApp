@@ -13,8 +13,9 @@ const styles = StyleSheet.create({
         textAlign:"center",
     },
     button: {
-        marginHorizontal:10,
-        marginVertical :10,
+        marginHorizontal: 10,
+        marginTop: 6,
+        justifyContent: "center"
     }
 });
 

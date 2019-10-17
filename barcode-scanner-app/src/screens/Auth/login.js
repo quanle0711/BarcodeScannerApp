@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import {
     Container,
     Button,
@@ -8,7 +8,8 @@ import {
     Form,
     Item,
     Input,
-    Label
+    Label,
+    Icon 
 } from "native-base";
 
 import { connect } from "react-redux";
@@ -22,15 +23,22 @@ const styles = StyleSheet.create({
     text: {
         textAlign: "center"
     },
+    formContainer: {
+        width: "96%"
+    },
+    buttonContainer: {
+        marginTop: 14,
+    },
     button: {
         marginHorizontal: 10,
-        marginVertical: 10
+        marginTop: 6,
+        justifyContent: "center"
     }
 });
 
 class LoginPage extends Component {
     static navigationOptions = {
-        title: "please sign in"
+        title: "Please Sign In"
     };
 
     constructor(props) {
@@ -51,8 +59,8 @@ class LoginPage extends Component {
         return (
             <Container style={styles.container}>
                 <H1 style={styles.text}>Welcome!</H1>
-                <Form>
-                    <Item floatingLabel>
+                <Form style={styles.formContainer}>
+                    <Item floatingLabel success>
                         <Label>Email</Label>
                         <Input
                             keyboardType="email-address"
@@ -61,35 +69,37 @@ class LoginPage extends Component {
                             }
                         />
                     </Item>
-                    <Item floatingLabel>
+                    <Item floatingLabel error>
                         <Label>Password</Label>
                         <Input secureTextEntry={true} />
                     </Item>
                 </Form>
-
-                <Button style={styles.button} onPress={this.loginAsync}>
-                    <Text>Log in</Text>
-                </Button>
-                <Button
-                    info
-                    style={styles.button}
-                    onPress={this.registerButtonHandler}
-                >
-                    <Text>Register</Text>
-                </Button>
-                <Button
-                    transparent
-                    style={styles.button}
-                    onPress={this.forgotPasswordButtonHandler}
-                >
-                    <Text>I forgot my password</Text>
-                </Button>
+                <View style={styles.buttonContainer}>
+                    <Button style={styles.button} onPress={this.loginAsync}>
+                        <Text>Log in</Text>
+                    </Button>
+                    <Button
+                        info
+                        style={styles.button}
+                        onPress={this.registerButtonHandler}
+                    >
+                        <Text>Register</Text>
+                    </Button>
+                    <Button
+                        transparent
+                        style={styles.button}
+                        onPress={this.forgotPasswordButtonHandler}
+                    >
+                        <Text>I forgot my password</Text>
+                    </Button>
+                </View>
             </Container>
         );
     }
 
     loginAsync = () => {
-        this.props.setUserToken(this.state.emailField)
+        this.props
+            .setUserToken(this.state.emailField)
             .then(() => {
                 this.props.navigation.navigate("App");
             })
