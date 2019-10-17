@@ -63,11 +63,9 @@ class Home extends Component {
         await this.props
             .removeUserToken()
             .then(() => {
-                console.log("[logout] " + this.props.token);
                 this.props.navigation.navigate("Auth");
             })
             .catch(err => {
-                console.log("[logout] " + err);
             });
     };
 }

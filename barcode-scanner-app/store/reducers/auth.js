@@ -1,21 +1,22 @@
 const initialState = {
-    token: {},
+    token: null,
     isLoading: false,
-    error: null
+    error: null,
+    authLoaded: false,
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case "GET_TOKEN":
-            return { ...state, token: action.token };
+            return { ...state, token: action.token, authLoaded:action.authLoaded };
         case "SAVE_TOKEN":
             return { ...state, token: action.token };
         case "REMOVE_TOKEN":
-            return { ...state, token: action.token };
+            return { ...state, token: null};
         case "LOADING":
-            return { ...state, token: action.isLoading };
+            return { ...state, isLoading: action.isLoading };
         case "ERROR":
-            return { ...state, token: action.error };
+            return { ...state, error: action.error };
         default:
             return initialState;
     }

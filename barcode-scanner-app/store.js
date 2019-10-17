@@ -9,5 +9,5 @@ const rootReducer = combineReducers({
 
 
 //set up store
-const Store = createStore(rootReducer,applyMiddleware(thunk));
+const Store = createStore(rootReducer, applyMiddleware(thunk));
 export default Store;

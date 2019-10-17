@@ -45,7 +45,7 @@ class LoginPage extends Component {
     };
 
     forgotPasswordButtonHandler = () => {
-        this.props.navigation.navigate("Register");
+        this.props.navigation.navigate("ForgotPassword");
     };
     render() {
         return (
@@ -91,7 +91,6 @@ class LoginPage extends Component {
     loginAsync = () => {
         this.props.setUserToken(this.state.emailField)
             .then(() => {
-                console.log("[LOGIN]" + this.props.token);
                 this.props.navigation.navigate("App");
             })
             .catch(err => {
@@ -99,12 +98,15 @@ class LoginPage extends Component {
             });
     };
 }
+
 const mapStateToProps = state => ({
     token: state.auth.token
 });
+
 const mapDispatchToProps = dispatch => ({
     setUserToken: value => dispatch(setUserToken(value))
 });
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps

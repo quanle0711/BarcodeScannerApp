@@ -23,25 +23,27 @@ class AuthLoadingPage extends Component {
         this.checkUserTokenAsync();
     }
 
-    //TODO - make async and fetch a real userToken instead of randomly generating token
-    checkUserTokenAsync = () => {
+    componentDidUpdate() {
+        console.log("token???: " + this.props.token);
+        this.props.navigation.navigate(
+            this.props.token != null ? "App" : "Auth"
+        );
+    }
+
+    checkUserTokenAsync = async () => {
         //switch screens based on value of token and unmount the loading screen
-        this.props.getUserToken()
-        .then(() => {
-            console.log("[LOADING] " + this.props.token.token);
-            this.props.navigation.navigate(
-                this.props.token.token !== undefined ? "App" : "Auth"
-            );
-        })
-        .catch(err => {
-            console.log(err)
-        });
+         this.props.getUserToken()
+        
     };
 }
 
-const mapStateToProps = state => ({
-    token: state.auth.token
-});
+const mapStateToProps = (state) => {
+    console.log("logging state: " + state.auth.authLoaded);
+    return {
+        token: state.auth.token,
+        authLoaded: state.auth.authLoaded,
+    };
+}
 
 const mapDispatchToProps = dispatch => ({
     getUserToken: () => dispatch(getUserToken())

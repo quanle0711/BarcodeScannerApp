@@ -4,7 +4,8 @@ import { AsyncStorage } from "react-native";
 export const getToken = (_token) => {
     return {
         type: "GET_TOKEN",
-        token: _token
+        token: _token,
+        authLoaded:true,
     };
 };
 
@@ -15,10 +16,9 @@ export const saveToken = (_token) => {
     };
 };
 
-export const removeToken = (_token) => {
+export const removeToken = () => {
     return {
         type: "REMOVE_TOKEN",
-        token: _token
     };
 };
 
@@ -38,49 +38,46 @@ export const setError = (err) => {
 
 //action creators & async actions
 
-export const getUserToken = () => {
+export const getUserToken = () => dispatch => 
 
-    return dispatch => {
-        return AsyncStorage.getItem('userToken')
+ AsyncStorage.getItem('userToken')
         .then((data) => {
-            console.log(data);
             dispatch(setLoading(false));
             dispatch(getToken(data));
+            console.log('GETTING then SETTING token: ----- ' + data);
         })
         .catch((err) => {
             dispatch(setLoading(false));
             dispatch(setError(err.message || 'ERROR'));
         })
-    }
-}
 
 
 export const setUserToken = (value) => {
-
     return dispatch => {
         return AsyncStorage.setItem('userToken', value)
-        .then((data) => {
-            console.log("setting" + data);
-            dispatch(setLoading(false));
-            dispatch(saveToken('tokensaved'));
-        })
-        .catch((err) => {
-            dispatch(setLoading(false));
-            dispatch(setError(err.message || 'ERROR'));
-        })
+            .then((data) => {
+                dispatch(setLoading(false));
+                dispatch(saveToken(value));
+                console.log('SETTING USER TOKEN: ----- ' + value);
+            })
+            .catch((err) => {
+                dispatch(setLoading(false));
+                dispatch(setError(err.message || 'ERROR'));
+            })
     }
 }
 
 export const removeUserToken = () => {
     return dispatch => {
         return AsyncStorage.removeItem('userToken')
-        .then((data) => {
-            dispatch(setLoading(false));
-            dispatch(removeToken(data));
-        })
-        .catch((err) => {
-            dispatch(setLoading(false));
-            dispatch(setError(err.message || 'ERROR'));
-        })
+            .then((data) => {
+                dispatch(setLoading(false));
+                dispatch(removeToken());
+                console.log('REMOVING USER TOKEN: ----- ');
+            })
+            .catch((err) => {
+                dispatch(setLoading(false));
+                dispatch(setError(err.message || 'ERROR'));
+            })
     }
 }

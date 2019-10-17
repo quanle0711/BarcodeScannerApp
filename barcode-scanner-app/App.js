@@ -11,14 +11,16 @@ import { createStackNavigator } from 'react-navigation-stack';
 import LoginPage from "./screens/Auth/login";
 import RegisterPage from "./screens/Auth/register";
 import AuthLoadingPage from "./screens/Auth/authLoading";
+import ForgotPasswordPage  from "./screens/Auth/forgotpassword";
 import Home from "./screens/App/home";
 import ScanPage from "./screens/App/scanpage";
 import AddPage from "./screens/App/addpage";
 
-//Redux provider
+//Redux
 
 import { Provider } from 'react-redux'; 
 import Store from "./store";
+
 
 const AppStack = createStackNavigator(
   {
@@ -34,7 +36,7 @@ const AuthStack = createStackNavigator(
   {
     Login: LoginPage,
     Register: RegisterPage,
-    //ForgotPassword: ForgotPasswordPage
+    ForgotPassword: ForgotPasswordPage
   }
   , {
     initialRouteName: 'Login'
