@@ -72,6 +72,7 @@ class LoginPage extends Component {
                     <Item floatingLabel error>
                         <Label>Password</Label>
                         <Input secureTextEntry={true} />
+                        
                     </Item>
                 </Form>
                 <View style={styles.buttonContainer}>

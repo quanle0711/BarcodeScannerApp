@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Alert } from "react-native";
+import { StyleSheet, Alert, KeyboardAvoidingView } from "react-native";
 
 import {
     Container,
@@ -13,16 +13,11 @@ import {
     Content
 } from "native-base";
 import axios from "axios";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const url = "http://9756e40f.ngrok.io";
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center"
-    },
+    container: {flex:1,justifyContent:"center"},
     h1: {
         textAlign: "center",
         padding: 32
@@ -108,8 +103,7 @@ class AddPage extends Component {
 
     render() {
         return (
-            <Content>
-                <Container>
+                <KeyboardAvoidingView style={styles.container} behavior="height" enabled>
                     <H1 style={styles.h1}>Add Item</H1>
                     <Form>
                         <Item fixedLabel>
@@ -174,8 +168,7 @@ class AddPage extends Component {
                     >
                         <Text>Test</Text>
                     </Button>
-                </Container>
-            </Content>
+                </KeyboardAvoidingView>
         );
     }
 }
