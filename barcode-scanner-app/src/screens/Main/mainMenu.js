@@ -37,7 +37,7 @@ class Home extends Component {
                     <Button
                         style={styles.button}
                         onPress={() => {
-                            this.props.navigation.navigate("Scan");
+                            this.props.navigation.navigate("ScanPage");
                         }}
                     >
                         <Text>Scan Item</Text>

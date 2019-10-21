@@ -14,6 +14,7 @@ import AuthLoadingPage from "./src/screens/Auth/authLoading";
 import ForgotPasswordPage  from "./src/screens/Auth/forgotPassword";
 import Home from "./src/screens/Main/mainMenu";
 import ScanCamera from "./src/screens/Main/Scan/scanCamera";
+import ScanPage from "./src/screens/Main/Scan/scanPage";
 import AddPage from "./src/screens/Main/Scan/addPage";
 
 //Redux
@@ -25,7 +26,8 @@ import Store from "./src/store";
 const AppStack = createStackNavigator(
   {
     Home: Home,
-    Scan: ScanCamera,
+    ScanPage: ScanPage,
+    ScanCamera: ScanCamera,
     Add: AddPage
   },
   {headerLayoutPreset: 'center'}
