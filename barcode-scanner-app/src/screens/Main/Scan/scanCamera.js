@@ -56,13 +56,22 @@ class ScanCamera extends Component {
     };
 
     handleBarCodeScan = ({ type, data }) => {
-        this.setState({ scanned: true, isLoading:true });
+        this.setState({ scanned: true, isLoading: true });
 
-        let itemFound = null;
-        let itemName, itemPrice, itemId;
+        axios.get(`http://offinti.com/API/product.php?action=getProduct&item=1`)
+            .then(data => {
+                console.log(data);
+                this.setState({isLoading:false});
+            }).catch(err => {
+                console.log(err)
+            })
+        /**
+         * 
+         let itemFound = null;
+         let itemName, itemPrice, itemId;
         console.log(`getting... ${url}/products?barcode=${data}`);
         axios
-            .get(`${url}/products?barcode=${data}`)
+        .get(`${url}/products?barcode=${data}`)
             .then(res => {
                 let itemArr = [...res.data];
                 if (itemArr.length > 0) {
@@ -86,6 +95,7 @@ class ScanCamera extends Component {
             .catch(rej => {
                 console.log(rej.data);
             });
+            */
     };
 
     render() {
@@ -143,7 +153,7 @@ class ScanCamera extends Component {
                         itemPrice={itemPrice}
                         itemId={itemId}
                         clicked={() => {
-                            this.setState({ scanned: false, isLoading:false });
+                            this.setState({ scanned: false, isLoading: false });
                         }}
                     />
                 )}
