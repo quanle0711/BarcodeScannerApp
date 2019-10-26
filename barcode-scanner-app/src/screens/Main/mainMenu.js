@@ -1,22 +1,29 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
-import { Container, Button, Text, H1 } from "native-base";
+import { StyleSheet, View, Image, Platform, StatusBar } from "react-native";
+import { Container, Button, Text, H1, Content } from "native-base";
 
 //redux
 import { connect } from "react-redux";
 import { removeUserToken } from "../../store/actions/actions";
 
+//local UI
+import Logo from '../../../assets/logo/OFFINTI-logo.png';
+import HeaderLogo from '../../components/UI/Header/HeaderWithLogo'
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
+    },
+    content: {
+        flex: 1,
         justifyContent: "center"
     },
     text: {
         fontSize: 30,
         textAlign: "center"
     },
-    buttonContainer: {marginTop:'30%'},
+    buttonContainer: { marginTop: '30%' },
     button: {
         marginHorizontal: 10,
         marginTop: 6,
@@ -25,15 +32,17 @@ const styles = StyleSheet.create({
 });
 
 class Home extends Component {
+    //Navigation
     static navigationOptions = {
-        title: "Barcode Scanner"
+        header: null
     };
 
     render() {
         return (
             <Container style={styles.container}>
-                <H1 style={styles.text}>Main Menu</H1>
-                <View style={styles.buttonContainer}>
+                <HeaderLogo/>
+                <Content contentContainerStyle={styles.content}>
+
                     <Button
                         style={styles.button}
                         onPress={() => {
@@ -60,10 +69,12 @@ class Home extends Component {
                     >
                         <Text>Log out</Text>
                     </Button>
-                </View>
+                </Content>
+
             </Container>
         );
     }
+
 
     logOutAsync = async () => {
         await this.props
@@ -71,10 +82,12 @@ class Home extends Component {
             .then(() => {
                 this.props.navigation.navigate("Auth");
             })
-            .catch(err => {});
+            .catch(err => { });
     };
 }
 
+
+//redux
 const mapStateToProps = state => ({
     token: state.auth.token
 });

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Platform, StatusBar,KeyboardAvoidingView  } from "react-native";
+import { StyleSheet, View, Platform, StatusBar, KeyboardAvoidingView } from "react-native";
 import {
     Container,
     Header,
@@ -20,14 +20,14 @@ import {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-            ...Platform.select({
-                android: {
-                    marginTop: StatusBar.currentHeight
-                }
-            })
+        ...Platform.select({
+            android: {
+                marginTop: StatusBar.currentHeight
+            }
+        })
     },
     content: {
-        flex:1,
+        flex: 1,
         justifyContent: "center"
     },
     text: {

@@ -60,7 +60,7 @@ export default class scanPage extends Component {
     render() {
         return (
             <Container style={styles.container}>
-                <Header searchBar rounded>
+                <Header style={{backgroundColor:'#fff'}}searchBar rounded>
                     <Item>
                         <Button
                             transparent
@@ -69,6 +69,7 @@ export default class scanPage extends Component {
                             <Icon name="ios-arrow-back" />
                         </Button>
                         <Input
+                        style={{backgroundColor:'#efefef', borderRadius:9999, padding:8}}
                             placeholder="Search"
                             onChangeText={searchField =>
                                 this.setState({ searchField })
@@ -86,7 +87,6 @@ export default class scanPage extends Component {
                             <Col style={styles.test2}></Col>
                         </Row>
                     </Grid>
-                    
                 </Content>
                 <Fab
                         active={this.state.buttonActive}
