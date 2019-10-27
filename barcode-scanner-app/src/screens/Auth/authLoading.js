@@ -15,7 +15,6 @@ class AuthLoadingPage extends Component {
             <View>
                 <ActivityIndicator />
                 <StatusBar barStyle="default" />
-                <Text>Hello world</Text>
             </View>
         );
     }

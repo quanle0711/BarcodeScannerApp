@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Platform, StatusBar, KeyboardAvoidingView } from "react-native";
+import {
+    StyleSheet,
+    View,
+    Platform,
+    StatusBar,
+    KeyboardAvoidingView
+} from "react-native";
 import {
     Container,
     Header,
@@ -42,7 +48,6 @@ const styles = StyleSheet.create({
 
 export default class RegisterPage extends Component {
     static navigationOptions = {
-        title: "New User",
         header: null
     };
 
@@ -56,17 +61,14 @@ export default class RegisterPage extends Component {
 
     render() {
         return (
-            <KeyboardAvoidingView style={styles.container} behavior="height" enabled>
-                <Header>
-                    <Left></Left>
-                    <Body>
-                        <Title>Hello world</Title>
-                    </Body>
-                    <Right></Right>
-                </Header>
+            <KeyboardAvoidingView
+                style={styles.container}
+                behavior="height"
+                enabled
+            >
                 <Content contentContainerStyle={styles.content}>
-                    <H1 style={styles.text}>Register Now!</H1>
-                    <Form >
+                    <H1 style={styles.text}>Register Now</H1>
+                    <Form>
                         <Item floatingLabel>
                             <Label>Email</Label>
                             <Input keyboardType="email-address" />

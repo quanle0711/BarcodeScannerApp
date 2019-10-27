@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import {
     Container,
     Button,
@@ -8,9 +8,11 @@ import {
     Form,
     Item,
     Input,
-    Label,
-    Icon 
+    Label
 } from "native-base";
+
+import Logo from "../../../assets/logo/OFFINTI-logo.png";
+//redux
 
 import { connect } from "react-redux";
 import { setUserToken } from "../../store/actions/actions";
@@ -24,15 +26,14 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     formContainer: {
-        width: "96%"
-    },
-    buttonContainer: {
-        marginTop: 14,
+        width: "80%",
+        marginHorizontal: "10%",
+        justifyContent: "center"
     },
     button: {
-        marginHorizontal: 10,
-        marginTop: 6,
-        justifyContent: "center"
+        marginHorizontal: "10%",
+        marginVertical:'1.5%',
+        justifyContent: 'center'
     }
 });
 
@@ -58,28 +59,51 @@ class LoginPage extends Component {
     render() {
         return (
             <Container style={styles.container}>
-                <H1 style={styles.text}>Welcome!</H1>
+                <View style={{ alignItems: "center" }}>
+                    <Image
+                        style={{ width: "80%" }}
+                        source={Logo}
+                        resizeMode="contain"
+                    />
+                </View>
                 <Form style={styles.formContainer}>
-                    <Item floatingLabel success>
-                        <Label>Email</Label>
+                    <Item
+                        rounded
+                        style={{
+                            marginLeft: 0,
+                            marginVertical: "1.5%",
+                            paddingHorizontal: 0
+                        }}
+                    >
                         <Input
                             keyboardType="email-address"
+                            placeholder="E-mail address"
                             onChangeText={emailField =>
                                 this.setState({ emailField })
                             }
                         />
                     </Item>
-                    <Item floatingLabel error>
-                        <Label>Password</Label>
-                        <Input secureTextEntry={true} />
-                        
+                    <Item
+                        rounded
+                        style={{
+                            marginLeft: 0,
+                            marginVertical: "1.5%",
+                            paddingHorizontal: 0
+                        }}
+                    >
+                        <Input secureTextEntry={true} placeholder="Password" />
                     </Item>
                 </Form>
                 <View style={styles.buttonContainer}>
-                    <Button style={styles.button} onPress={this.loginAsync}>
+                    <Button
+                        rounded
+                        style={styles.button}
+                        onPress={this.loginAsync}
+                    >
                         <Text>Log in</Text>
                     </Button>
                     <Button
+                        rounded
                         info
                         style={styles.button}
                         onPress={this.registerButtonHandler}
