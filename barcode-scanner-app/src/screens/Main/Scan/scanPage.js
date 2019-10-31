@@ -23,13 +23,11 @@ import {
     List,
     Input
 } from "native-base";
-import { Col, Row, Grid } from "react-native-easy-grid";
 import Axios from "axios";
 
 import BigItemCard from "../../../components/UI/Item/MainItemCard";
 import ListItemCard from "../../../components/UI/Item/ListItemCard";
 
-const screenWidth = Math.round(Dimensions.get('window').width) / 2;
 //imports
 
 const styles = StyleSheet.create({
@@ -41,14 +39,6 @@ const styles = StyleSheet.create({
             }
         })
     },
-    test1: {
-        backgroundColor: "red",
-        height: 400
-    },
-    test2: {
-        backgroundColor: "green",
-        height: 900
-    }
 });
 
 export default class scanPage extends Component {
@@ -63,13 +53,15 @@ export default class scanPage extends Component {
             searchField: "",
             searchResult: [],
             exactSearch: false,
-            buttonActive: false
+            buttonActive: false,
+            renderSingleItem: {}
         };
     }
 
     searchBarHandler = () => {
         //TODO
         let exactSearch = false;
+        console.log('--------------searchfield: ' + this.state.searchField + "-----------------------");
         Axios.get(
             `http://offinti.com/API/product/read1.php?action=getProduct&item=${this.state.searchField}`
         )
@@ -77,6 +69,7 @@ export default class scanPage extends Component {
                 let results = res.data.records;
                 //match only 1 product
                 if (results.length == 1) {
+                    this.exactSearchHandler(results[0]);
                     exactSearch = true;
                 }
 
@@ -85,14 +78,11 @@ export default class scanPage extends Component {
                     let temp = results.slice(0, 10);
                     results = temp;
                 }
-                
+
                 this.setState({
                     exactSearch: exactSearch,
                     searchResult: results
                 });
-
-                console.log("data returned: ");
-                console.log(this.state.searchResult);
             })
             .catch(err => {
                 //catch handling
@@ -105,16 +95,40 @@ export default class scanPage extends Component {
     };
 
     barcodeScanHandler = () => {
-        this.props.navigation.navigate("ScanCamera");
+        this.props.navigation.navigate("ScanCamera", {
+            onReturn: this.onScanReturn
+        });
     };
+
+    onScanReturn = async (params) => {
+        await this.setState({ searchField: params });
+        this.searchBarHandler();
+    }
+
+    exactSearchHandler = item => {
+        this.setState({ exactSearch: true, renderSingleItem: { ...item } });
+        console.log(this.state.renderSingleItem);
+    }
+
+    itemPressHandler = item => {
+        console.log("aaaaaaa")
+        this.props.navigation.navigate("SingleScan", {
+            item : item
+        });
+    }
 
     render() {
         let items = null;
-
         if (this.state.exactSearch) {
             items = (
                 <ScrollView>
-                    <BigItemCard />
+                    <BigItemCard
+                        image={this.state.renderSingleItem.image}
+                        ean={this.state.renderSingleItem.ean}
+                        price={this.state.renderSingleItem.price}
+                        name={this.state.renderSingleItem.name}
+                        id={this.state.renderSingleItem.product_id}
+                        quantity={this.state.renderSingleItem.quantity} />
                 </ScrollView>
             );
         } else {
@@ -123,7 +137,8 @@ export default class scanPage extends Component {
                     data={this.state.searchResult}
                     renderItem={({ item }) => (
                         <ListItemCard
-                            image={`https://picsum.photos/${screenWidth}`}
+                            select={() => this.itemPressHandler(item)}
+                            image={item.image}
                             name={item.name}
                             id={item.product_id}
                             quantity={item.quantity}
@@ -140,7 +155,7 @@ export default class scanPage extends Component {
                 <Header style={{ backgroundColor: "#fff" }} searchBar rounded>
                     <Item>
                         <Button
-                            transparent
+                            bordered rounded
                             onPress={() => this.props.navigation.goBack()}
                         >
                             <Icon name="ios-arrow-back" />
@@ -153,14 +168,15 @@ export default class scanPage extends Component {
                                 borderRadius: 5
                             }}
                             placeholder="Search"
+                            value={this.state.searchField}
                             onChangeText={searchField =>
                                 this.setState({ searchField })
                             }
                         />
-                        <Button transparent onPress={this.searchBarHandler}>
+                        <Button bordered rounded onPress={this.searchBarHandler}>
                             <Icon name="ios-search" />
                         </Button>
-                        <Button transparent onPress={this.barcodeScanHandler}>
+                        <Button bordered rounded onPress={this.barcodeScanHandler}>
                             <Icon name="md-camera" />
                         </Button>
                     </Item>

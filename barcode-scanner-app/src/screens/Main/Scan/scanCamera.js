@@ -1,22 +1,15 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
-import axios from "axios";
 import { BarCodeScanner } from "expo-barcode-scanner";
 
 import {
     Container,
-    Header,
-    Content,
     Card,
     CardItem,
-    Body,
     Button,
     Text,
-    Item
 } from "native-base";
-import ScannedItemCard from "../../../components/itemCard";
 
 const url = "http://9756e40f.ngrok.io";
 
@@ -25,8 +18,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        flexDirection: "column",
+        //flexDirection: "column",
         justifyContent: "center"
+    },
+    scanner: {
+        ...StyleSheet.absoluteFillObject,
+         width:'100%',
+        // height:'100%',
     }
 });
 
@@ -39,10 +37,6 @@ class ScanCamera extends Component {
             hasCameraPermission: null,
             scanned: false,
             isLoading: false,
-            itemFound: false,
-            itemName: "",
-            itemPrice: "",
-            itemId: ""
         };
     }
 
@@ -56,107 +50,64 @@ class ScanCamera extends Component {
     };
 
     handleBarCodeScan = ({ type, data }) => {
-        this.setState({ scanned: true, isLoading: true });
-
-        axios.get(`http://offinti.com/API/product.php?action=getProduct&item=1`)
-            .then(data => {
-                console.log(data);
-                this.setState({isLoading:false});
-            }).catch(err => {
-                console.log(err)
-            })
-        /**
-         * 
-         let itemFound = null;
-         let itemName, itemPrice, itemId;
-        console.log(`getting... ${url}/products?barcode=${data}`);
-        axios
-        .get(`${url}/products?barcode=${data}`)
-            .then(res => {
-                let itemArr = [...res.data];
-                if (itemArr.length > 0) {
-                    console.log(`found`);
-                    itemFound = true;
-                    itemName = itemArr[0].ItemName;
-                    itemPrice = itemArr[0]["price excl GST"];
-                    itemId = itemArr[0].product_id;
-                } else {
-                    console.log(`notfound`);
-                    itemFound = false;
-                }
-                this.setState({
-                    isLoading: false,
-                    itemFound: itemFound,
-                    itemName: itemName,
-                    itemPrice: itemPrice,
-                    itemId: itemId
-                });
-            })
-            .catch(rej => {
-                console.log(rej.data);
-            });
-            */
+        this.setState({ scanned: true });
+        this.props.navigation.goBack();
+        this.props.navigation.state.params.onReturn(data);
     };
 
     render() {
-        const {
-            hasCameraPermission,
-            scanned,
-            isLoading,
-            itemFound,
-            itemName,
-            itemPrice,
-            itemId
-        } = this.state;
 
-        if (hasCameraPermission === null) {
-            <Container style={styles.container}>
-                <Button
-                    title={"request permission"}
-                    onPress={this.getCameraPermissions}
-                />
-            </Container>;
-        }
-        if (hasCameraPermission === false) {
+        if (this.state.hasCameraPermission === null) {
             return (
                 <Container style={styles.container}>
                     <Button
-                        title={"request permission again"}
-                        onPress={this.getCameraPermissions}
-                    />
+                    onPress={this.getCameraPermissions}>
+                        <Text>Request Permission</Text>
+                    </Button>
+                </Container>
+            )
+        }
+        if (this.state.hasCameraPermission === false) {
+            return (
+                <Container style={styles.container}>
+                    <Button
+                    onPress={this.getCameraPermissions}>
+                        <Text>No Access to Camera, Try again</Text>
+                    </Button>
                 </Container>
             );
         }
 
         return (
             <Container style={styles.container}>
-                <Text>hello world</Text>
                 <BarCodeScanner
                     onBarCodeScanned={
-                        scanned ? undefined : this.handleBarCodeScan
+                        //this.state.scanned ? undefined : this.handleBarCodeScan
+                        this.handleBarCodeScan
                     }
-                    style={StyleSheet.absoluteFillObject}
+                    style={styles.scanner}
                 />
 
-                {scanned && isLoading && (
-                    <Card>
-                        <CardItem header>
-                            <Text>loading...</Text>
-                        </CardItem>
-                    </Card>
-                )}
+                {
+                //------------CHECK LATER
+                //     this.state.scanned && this.state.isLoading && (
+                //     <Card>
+                //         <CardItem header>
+                //             <Text>loading...</Text>
+                //         </CardItem>
+                //     </Card>
+                // )}
 
-                {scanned && !isLoading && (
-                    <ScannedItemCard
-                        itemFound={itemFound}
-                        itemName={itemName}
-                        itemPrice={itemPrice}
-                        itemId={itemId}
-                        clicked={() => {
-                            this.setState({ scanned: false, isLoading: false });
-                        }}
-                    />
-                )}
+                // {this.state.scanned && !this.state.isLoading && (
+                //     <Button
+                //         onPress={() => {
+                //             this.setState({ scanned: false, isLoading: false });
+                //         }}
+                //     >
+                //         <Text>Scan again</Text>
+                //     </Button>
+                // )
+                }
             </Container>
         );
     }

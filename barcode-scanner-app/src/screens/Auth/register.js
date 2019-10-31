@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 
 export default class RegisterPage extends Component {
     static navigationOptions = {
-        header: null
+        //header: null
     };
 
     constructor(props) {

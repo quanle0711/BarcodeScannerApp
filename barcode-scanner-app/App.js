@@ -21,11 +21,13 @@ import AddPage from "./src/screens/Main/Scan/addPage";
 
 import { Provider } from "react-redux";
 import Store from "./src/store";
+import SingleScanPage from "./src/screens/Main/Scan/singleItemScan";
 
 const AppStack = createStackNavigator(
     {
         Home: Home,
         ScanPage: ScanPage,
+        SingleScan: SingleScanPage,
         ScanCamera: ScanCamera,
         Add: AddPage
     },
@@ -45,10 +47,10 @@ const AuthStack = createStackNavigator(
         ForgotPassword: ForgotPasswordPage
     },
     {
-        headerMode: "none",
-        navigationOptions: {
-            headerVisible: false
-        },
+        // headerMode: "none",
+        // navigationOptions: {
+        //     headerVisible: false
+        // },
         initialRouteName: "Login"
     }
 );
