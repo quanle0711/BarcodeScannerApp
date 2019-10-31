@@ -7,6 +7,9 @@ import {
     FlatList,
     Dimensions
 } from "react-native";
+
+import AwesomeButtonBlue from 'react-native-really-awesome-button/src/themes/blue';
+
 import {
     Container,
     Content,
@@ -38,7 +41,7 @@ const styles = StyleSheet.create({
                 marginTop: StatusBar.currentHeight
             }
         })
-    },
+    }
 });
 
 export default class scanPage extends Component {
@@ -61,7 +64,11 @@ export default class scanPage extends Component {
     searchBarHandler = () => {
         //TODO
         let exactSearch = false;
-        console.log('--------------searchfield: ' + this.state.searchField + "-----------------------");
+        console.log(
+            "--------------searchfield: " +
+                this.state.searchField +
+                "-----------------------"
+        );
         Axios.get(
             `http://offinti.com/API/product/read1.php?action=getProduct&item=${this.state.searchField}`
         )
@@ -100,22 +107,20 @@ export default class scanPage extends Component {
         });
     };
 
-    onScanReturn = async (params) => {
+    onScanReturn = async params => {
         await this.setState({ searchField: params });
         this.searchBarHandler();
-    }
+    };
 
     exactSearchHandler = item => {
         this.setState({ exactSearch: true, renderSingleItem: { ...item } });
-        console.log(this.state.renderSingleItem);
-    }
+    };
 
     itemPressHandler = item => {
-        console.log("aaaaaaa")
         this.props.navigation.navigate("SingleScan", {
-            item : item
+            item: item
         });
-    }
+    };
 
     render() {
         let items = null;
@@ -128,7 +133,8 @@ export default class scanPage extends Component {
                         price={this.state.renderSingleItem.price}
                         name={this.state.renderSingleItem.name}
                         id={this.state.renderSingleItem.product_id}
-                        quantity={this.state.renderSingleItem.quantity} />
+                        quantity={this.state.renderSingleItem.quantity}
+                    />
                 </ScrollView>
             );
         } else {
@@ -154,12 +160,14 @@ export default class scanPage extends Component {
             <Container style={styles.container}>
                 <Header style={{ backgroundColor: "#fff" }} searchBar rounded>
                     <Item>
-                        <Button
-                            bordered rounded
+                        <AwesomeButtonBlue
+                            type="secondary"
+                            height={40}
+                            style={{ marginRight: "2%" }}
                             onPress={() => this.props.navigation.goBack()}
                         >
                             <Icon name="ios-arrow-back" />
-                        </Button>
+                        </AwesomeButtonBlue>
                         <Input
                             style={{
                                 height: "95%",
@@ -173,12 +181,22 @@ export default class scanPage extends Component {
                                 this.setState({ searchField })
                             }
                         />
-                        <Button bordered rounded onPress={this.searchBarHandler}>
+                        <AwesomeButtonBlue
+                            type="secondary"
+                            height={40}
+                            style={{ marginHorizontal: "2%" }}
+                            onPress={this.searchBarHandler}
+                        >
                             <Icon name="ios-search" />
-                        </Button>
-                        <Button bordered rounded onPress={this.barcodeScanHandler}>
+                        </AwesomeButtonBlue>
+                        <AwesomeButtonBlue
+                            type="secondary"
+                            height={40}
+                            style={{ marginRight: "2%" }}
+                            onPress={this.barcodeScanHandler}
+                        >
                             <Icon name="md-camera" />
-                        </Button>
+                        </AwesomeButtonBlue>
                     </Item>
                 </Header>
 
