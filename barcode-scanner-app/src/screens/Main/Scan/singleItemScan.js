@@ -11,10 +11,11 @@ import {
 import ParallaxScrollView from "react-native-parallax-scroll-view";
 import AwesomeButtonBlue from "react-native-really-awesome-button/src/themes/blue";
 import { Header, Button, Item, Icon, Left, Body, Right } from "native-base";
+import ProductStatusBar from "../../../components/UI/productStatusBar/productStatusBar";
 
 const ScreenHeight = Math.round(Dimensions.get("window").height);
 const ScreenWidth = Math.round(Dimensions.get("window").width);
-const parallaxHeaderHeight = ScreenHeight * 0.6;
+const parallaxHeaderHeight = ScreenHeight * 0.5;
 
 const styles = StyleSheet.create({
     header: {
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     },
 
     extraInfo1: {
-        flexDirection:"row",
+        flexDirection: "row",
         borderBottomWidth: 1
     }
 });
@@ -53,8 +54,6 @@ export default class SingleScanPage extends Component {
     }
 
     render() {
-
-        
         const item = this.props.navigation.state.params.item;
         return (
             <ParallaxScrollView
@@ -84,12 +83,15 @@ export default class SingleScanPage extends Component {
                     ></ImageBackground>
                 )}
             >
-                <View style={{ height: 400 }}>
+                <View style={{}}>
+                    <ProductStatusBar />
                     <View style={styles.buttons}>
                         <AwesomeButtonBlue
                             type="primary"
-                            width={ScreenWidth * 0.48}
+                            width={null}
+                            stretch={true}
                             style={{
+                                flex:1,
                                 marginHorizontal: "1%",
                                 marginVertical: "1%"
                             }}
@@ -98,8 +100,10 @@ export default class SingleScanPage extends Component {
                         </AwesomeButtonBlue>
                         <AwesomeButtonBlue
                             type="secondary"
-                            width={ScreenWidth * 0.48}
+                            width={null}
+                            stretch={true}
                             style={{
+                                flex:1,
                                 marginHorizontal: "1%",
                                 marginVertical: "1%"
                             }}
@@ -107,6 +111,18 @@ export default class SingleScanPage extends Component {
                             <Text style={{ color: "#444" }}>
                                 Add to Purchase
                             </Text>
+                        </AwesomeButtonBlue>
+                        <AwesomeButtonBlue
+                            type="primary"
+                            width={null}
+                            stretch={true}
+                            style={{
+                                flex:1,
+                                marginHorizontal: "1%",
+                                marginVertical: "1%"
+                            }}
+                        >
+                            <Text style={{ color: "#444" }}>Add to Tender</Text>
                         </AwesomeButtonBlue>
                     </View>
                     <View style={styles.nameSegment}>
@@ -149,7 +165,7 @@ export default class SingleScanPage extends Component {
                         </Text>
                     </View>
                     <View style={styles.extraInfo1}>
-                    <Text
+                        <Text
                             style={{
                                 flex: 1,
                                 color: "#444",

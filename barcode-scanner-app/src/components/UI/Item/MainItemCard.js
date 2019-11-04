@@ -52,8 +52,10 @@ const MainItemCard = props => {
                 <View style={styles.buttons}>
                     <AwesomeButtonBlue
                         type="primary"
-                        width={ScreenWidth * 0.48}
+                        width={null}
+                        stretch={true}
                         style={{
+                            flex:1,
                             marginHorizontal: "1%",
                             marginVertical: "1%"
                         }}
@@ -62,8 +64,10 @@ const MainItemCard = props => {
                     </AwesomeButtonBlue>
                     <AwesomeButtonBlue
                         type="secondary"
-                        width={ScreenWidth * 0.48}
+                        width={null}
+                        stretch={true}
                         style={{
+                            flex:1,
                             marginHorizontal: "1%",
                             marginVertical: "1%"
                         }}

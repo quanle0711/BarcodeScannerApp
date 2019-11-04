@@ -30,6 +30,7 @@ const ScanStack = createStackNavigator(
         ScanPage: ScanPage,
         SingleScan: SingleScanPage,
         ScanCamera: ScanCamera,
+        Add: AddPage,
     },
     {
         headerMode: "none",
@@ -44,7 +45,7 @@ const DrawerStack = createDrawerNavigator(
     {
         Home: Home,
         Scan: { screen: ScanStack },
-        Add: AddPage,
+        
     },
     {
         initialRouteName: "Home"

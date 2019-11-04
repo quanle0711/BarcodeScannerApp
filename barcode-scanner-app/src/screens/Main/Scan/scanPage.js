@@ -5,35 +5,26 @@ import {
     Platform,
     StatusBar,
     FlatList,
+    View,
+    Alert,
+    Text,
+    Button,
+    TouchableWithoutFeedback,
+    Keyboard,
     Dimensions
 } from "react-native";
 
-import AwesomeButtonBlue from 'react-native-really-awesome-button/src/themes/blue';
+import Modal from "react-native-modalbox";
+import AwesomeButtonBlue from "react-native-really-awesome-button/src/themes/blue";
 
-import {
-    Container,
-    Content,
-    Button,
-    Header,
-    Text,
-    Fab,
-    Icon,
-    ListItem,
-    Item,
-    Left,
-    Body,
-    Right,
-    List,
-    Input
-} from "native-base";
+import { Container, Header, Icon, Item, Input } from "native-base";
 import Axios from "axios";
 
 import BigItemCard from "../../../components/UI/Item/MainItemCard";
 import ListItemCard from "../../../components/UI/Item/ListItemCard";
-import { HitTestResultTypes } from "expo/build/AR";
 
 //imports
-
+var screen = Dimensions.get("window");
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -42,6 +33,36 @@ const styles = StyleSheet.create({
                 marginTop: StatusBar.currentHeight
             }
         })
+    },
+    Modal: {
+        height: null,
+        width: screen.width * 0.7,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    text: {
+        color: "black",
+        fontSize: 22,
+        textAlign: "center"
+    },
+    modalTextWrap: {
+        padding:'5%'
+    },
+
+    modalBtn: {
+        flex: 1,
+        marginHorizontal: "1%",
+        marginVertical: "1%"
+    },
+
+    modalBtnWrap: {
+        width: "100%",
+        flexDirection: "row"
+    },
+    modalBtnText: {
+        fontSize: 22,
+        color: "#fff",
+        fontWeight: "bold"
     }
 });
 
@@ -62,6 +83,8 @@ export default class scanPage extends Component {
     }
 
     searchBarHandler = () => {
+        //hide keyboard
+        Keyboard.dismiss();
         let exactSearch = false;
         console.log(
             "--------------searchfield: " +
@@ -73,13 +96,13 @@ export default class scanPage extends Component {
         )
             .then(res => {
                 let results = res.data.records;
-                //match only 1 product
-                
-                if ( typeof results === "undefined") {
-                    console.log(res.data.message);
-                    //TODO
 
+                if (typeof results === "undefined") {
+                    console.log(res.data.message);
+                    this.refs.modal.open();
                 }
+
+                //match only 1 product
                 else if (results.length == 1) {
                     this.exactSearchHandler(results[0]);
                     exactSearch = true;
@@ -90,7 +113,6 @@ export default class scanPage extends Component {
                     let temp = results.slice(0, 10);
                     results = temp;
                 }
-
 
                 this.setState({
                     exactSearch: exactSearch,
@@ -160,32 +182,73 @@ export default class scanPage extends Component {
 
         return (
             <Container style={styles.container}>
+                <Modal
+                    style={styles.Modal}
+                    position={"center"}
+                    ref={"modal"}
+                    entry={"top"}
+                >
+                    <View style={styles.modalTextWrap}>
+                        <Text style={styles.text}>
+                            We cound not find this barcode
+                        </Text>
+                        <Text style={styles.text}>
+                            Would you like to add this item manually?
+                        </Text>
+                    </View>
+                    <View style={styles.modalBtnWrap}>
+                        <AwesomeButtonBlue
+                            width={null}
+                            stretch={true}
+                            style={styles.modalBtn}
+                            onPress={() => this.props.navigation.navigate('Add')}
+                        >
+                            <Text style={styles.modalBtnText}>Yes</Text>
+                        </AwesomeButtonBlue>
+
+                        <AwesomeButtonBlue
+                            width={null}
+                            stretch={true}
+                            style={styles.modalBtn}
+                            onPress={() => this.refs.modal.close()}
+                        >
+                            <Text style={styles.modalBtnText}>No</Text>
+                        </AwesomeButtonBlue>
+                    </View>
+                </Modal>
+
                 <Header style={{ backgroundColor: "#fff" }} searchBar rounded>
                     <Item>
                         <AwesomeButtonBlue
                             type="secondary"
-                            height={40}
+                            height={36}
                             style={{ marginRight: "2%" }}
-                            onPress={() => this.props.navigation.goBack()}
+                            onPress={() => this.props.navigation.openDrawer()}
                         >
-                            <Icon name="ios-arrow-back" />
+                            <Icon name="ios-menu" />
                         </AwesomeButtonBlue>
-                        <Input
-                            style={{
-                                height: "95%",
-                                marginTop: 0,
-                                backgroundColor: "#efefef",
-                                borderRadius: 5
-                            }}
-                            placeholder="Search"
-                            value={this.state.searchField}
-                            onChangeText={searchField =>
-                                this.setState({ searchField })
-                            }
-                        />
+                        <TouchableWithoutFeedback
+                            onPress={Keyboard.dismiss}
+                            accessible={false}
+                        >
+                            <Input
+                                style={{
+                                    height: 36,
+                                    marginTop: 0,
+                                    backgroundColor: "#efefef",
+                                    borderRadius: 5
+                                }}
+                                placeholder="Search"
+                                value={this.state.searchField}
+                                onChangeText={searchField =>
+                                    this.setState({ searchField })
+                                }
+                            />
+                        </TouchableWithoutFeedback>
+
                         <AwesomeButtonBlue
                             type="secondary"
-                            height={40}
+                            height={36}
                             style={{ marginHorizontal: "2%" }}
                             onPress={this.searchBarHandler}
                         >
@@ -193,7 +256,7 @@ export default class scanPage extends Component {
                         </AwesomeButtonBlue>
                         <AwesomeButtonBlue
                             type="secondary"
-                            height={40}
+                            height={36}
                             style={{ marginRight: "2%" }}
                             onPress={this.barcodeScanHandler}
                         >

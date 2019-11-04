@@ -40,7 +40,7 @@ class Home extends Component {
     render() {
         return (
             <Container style={styles.container}>
-                <HeaderLogo/>
+                <HeaderLogo navigation={this.props.navigation}/>
                 <Content contentContainerStyle={styles.content}>
 
                     <Button

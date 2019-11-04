@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { StyleSheet, Alert, KeyboardAvoidingView } from "react-native";
+import { StyleSheet, Alert, KeyboardAvoidingView,SafeAreaView } from "react-native";
 
 import {
-    Container,
+
     Form,
     Item,
     Input,
@@ -10,7 +10,7 @@ import {
     Button,
     Text,
     H1,
-    Content
+    
 } from "native-base";
 import axios from "axios";
 
