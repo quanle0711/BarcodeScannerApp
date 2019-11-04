@@ -1,90 +1,145 @@
 import React, { Component } from "react";
-import { StyleSheet, Image, View, TouchableNativeFeedback, Dimensions } from "react-native";
+import { StyleSheet, ImageBackground, View, Animated, Dimensions } from "react-native";
 import {
     Card,
     CardItem,
     Text,
-    Button,
-    Icon,
-    Left,
-    Body,
-    Right
 } from "native-base";
+import AwesomeButtonBlue from "react-native-really-awesome-button/src/themes/blue";
+import ProductStatusBar from "../productStatusBar/productStatusBar";
 const ScreenHeight = Math.round(Dimensions.get('window').height);
+const ScreenWidth = Math.round(Dimensions.get('window').width);
+var imagePos = new Animated.Value(0);
 
 const styles = StyleSheet.create({
-    buttonSection: {
-        paddingLeft: 0,
-        paddingRight: 0,
-        paddingBottom: 0,
-        paddingTop: 0,
-        height: ScreenHeight * 0.1,
-        display: "flex",
-        flexDirection: "row"
+    image: {
+        height: ScreenHeight * 0.5,
+        width: '100%',
+        // transform: [{
+        //     translateY: imagePos.interpolate({
+        //         inputRange: [0, 1],
+        //         outputRange: [0, 100]
+        //     })
+        //}]
     },
-    button: {
-        paddingHorizontal: "2%",
-        paddingVertical: "5%",
-        justifyContent: "center",
-        alignItems: "center",
+    buttons: {
+        flexDirection: "row",
         flex: 1,
-    height: "90%",
-}
+        borderBottomWidth: 1
+    },
+    nameSegment: {
+        borderBottomWidth: 1
+    },
+
+    extraInfo1: {
+        flexDirection:"row",
+        borderBottomWidth: 1
+    }
 })
 const MainItemCard = props => {
     //props:image, name, price, quantity, ean, id
 
     return (
-        <Card>
-            <CardItem cardBody bordered>
-                <Image
-                    source={{ uri: `http://offinti.com/image/${props.image}` }} //to change
-                    style={{ height: ScreenHeight * 0.6, width: null, flex: 1 }}
-                    resizeMode="contain"
-                />
-            </CardItem>
-
-
-            <CardItem bordered style={styles.buttonSection}>
-                <TouchableNativeFeedback onPress={this._onPressButton}
-
-                    background={TouchableNativeFeedback.SelectableBackground()}
-                >
-                    <View style={{ ...styles.button, backgroundColor: '#5cb85c' }}>
-                        <Text>Add to Cupboard</Text>
-                    </View>
-                </TouchableNativeFeedback>
-                <TouchableNativeFeedback
-                    onPress={this._onPressButton}
-
-                    background={TouchableNativeFeedback.SelectableBackground()}
-                >
-                    <View style={{ ...styles.button, backgroundColor: '#0275d8' }}>
-                        <Text >Add to Purchase Order</Text>
-                    </View>
-                </TouchableNativeFeedback>
-            </CardItem>
-            <CardItem bordered>
-                <Text>{props.name}</Text>
-            </CardItem>
-            <CardItem bordered style={{ display: "flex", flexDirection: "row" }}>
-                <View style={{ flex: 1 }}>
-                    <Text>Current Price: ${props.price}</Text>
+        <View>
+            <ImageBackground
+                source={{
+                    uri: `http://offinti.com/image/${props.image}`
+                }}
+                resizeMode="contain"
+                style={styles.image} />
+            <ProductStatusBar/>
+            <View>
+                <View style={styles.buttons}>
+                    <AwesomeButtonBlue
+                        type="primary"
+                        width={ScreenWidth * 0.48}
+                        style={{
+                            marginHorizontal: "1%",
+                            marginVertical: "1%"
+                        }}
+                    >
+                        <Text style={{ color: "#fff" }}>Add to VPS</Text>
+                    </AwesomeButtonBlue>
+                    <AwesomeButtonBlue
+                        type="secondary"
+                        width={ScreenWidth * 0.48}
+                        style={{
+                            marginHorizontal: "1%",
+                            marginVertical: "1%"
+                        }}
+                    >
+                        <Text style={{ color: "#444" }}>
+                            Add to Purchase
+                            </Text>
+                    </AwesomeButtonBlue>
                 </View>
-                <View style={{ flex: 1 }}>
-                    <Text>Quantity: {props.quantity}</Text>
+                <View style={styles.nameSegment}>
+                    <Text
+                        style={{
+                            color: "#444",
+                            fontSize: 24,
+                            fontWeight: "700",
+                            textAlign: "center",
+                            paddingHorizontal: "2%"
+                        }}
+                    >
+                        {props.name}
+                    </Text>
                 </View>
-            </CardItem>
-            <CardItem bordered style={{ display: "flex", flexDirection: "row" }}>
-                <View style={{ flex: 1 }}>
-                    <Text>EAN: {props.ean}</Text>
+                <View style={styles.extraInfo1}>
+                    <Text
+                        style={{
+                            flex: 1,
+                            color: "#444",
+                            fontSize: 20,
+                            fontWeight: "300",
+                            textAlign: "center",
+                            paddingHorizontal: "2%"
+                        }}
+                    >
+                        ${Number(props.price).toFixed(2)}NZD
+                        </Text>
+                    <Text
+                        style={{
+                            flex: 1,
+                            color: "#444",
+                            fontSize: 20,
+                            fontWeight: "300",
+                            textAlign: "center",
+                            paddingHorizontal: "4%"
+                        }}
+                    >
+                        In Stock: {props.quantity}
+                    </Text>
                 </View>
-                <View style={{ flex: 1 }}>
-                    <Text>Product ID : {props.id}</Text>
+                <View style={styles.extraInfo1}>
+                    <Text
+                        style={{
+                            flex: 1,
+                            color: "#444",
+                            fontSize: 20,
+                            fontWeight: "300",
+                            textAlign: "center",
+                            paddingHorizontal: "2%"
+                        }}
+                    >
+                        EAN: {props.ean}
+                    </Text>
+                    <Text
+                        style={{
+                            flex: 1,
+                            color: "#444",
+                            fontSize: 20,
+                            fontWeight: "300",
+                            textAlign: "center",
+                            paddingHorizontal: "4%"
+                        }}
+                    >
+                        Product ID: {props.product_id}
+                    </Text>
                 </View>
-            </CardItem>
-
-        </Card>
+            </View>
+        </View>
     );
 };
 

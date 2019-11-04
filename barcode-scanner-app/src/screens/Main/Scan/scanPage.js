@@ -30,6 +30,7 @@ import Axios from "axios";
 
 import BigItemCard from "../../../components/UI/Item/MainItemCard";
 import ListItemCard from "../../../components/UI/Item/ListItemCard";
+import { HitTestResultTypes } from "expo/build/AR";
 
 //imports
 
@@ -56,13 +57,11 @@ export default class scanPage extends Component {
             searchField: "",
             searchResult: [],
             exactSearch: false,
-            buttonActive: false,
             renderSingleItem: {}
         };
     }
 
     searchBarHandler = () => {
-        //TODO
         let exactSearch = false;
         console.log(
             "--------------searchfield: " +
@@ -75,7 +74,13 @@ export default class scanPage extends Component {
             .then(res => {
                 let results = res.data.records;
                 //match only 1 product
-                if (results.length == 1) {
+                
+                if ( typeof results === "undefined") {
+                    console.log(res.data.message);
+                    //TODO
+
+                }
+                else if (results.length == 1) {
                     this.exactSearchHandler(results[0]);
                     exactSearch = true;
                 }
@@ -86,18 +91,15 @@ export default class scanPage extends Component {
                     results = temp;
                 }
 
+
                 this.setState({
                     exactSearch: exactSearch,
                     searchResult: results
                 });
             })
             .catch(err => {
-                //catch handling
-                // if (err.response.status) {
-                //     alert("no products found");
-                // } else {
-                //     console.log(err.response);
-                // }
+                //TODO
+                console.log(err.response);
             });
     };
 
@@ -201,40 +203,6 @@ export default class scanPage extends Component {
                 </Header>
 
                 {items}
-
-                {/**
-                <Content>
-                    <Grid>
-                        <Row>
-                            <Col style={styles.test1}></Col>
-                            <Col style={styles.test2}></Col>
-                        </Row>
-                    </Grid>
-                </Content> 
-                <Fab
-                    active={this.state.buttonActive}
-                    direction="left"
-                    containerStyle={{}}
-                    style={{ backgroundColor: "#5067FF" }}
-                    position="bottomRight"
-                    onPress={() =>
-                        this.setState({
-                            buttonActive: !this.state.buttonActive
-                        })
-                    }
-                >
-                    <Icon name="share" />
-                    <Button style={{ backgroundColor: "#34A34F" }}>
-                        <Icon name="logo-whatsapp" />
-                    </Button>
-                    <Button style={{ backgroundColor: "#3B5998" }}>
-                        <Icon name="logo-facebook" />
-                    </Button>
-                    <Button disabled style={{ backgroundColor: "#DD5144" }}>
-                        <Icon name="mail" />
-                    </Button>
-                </Fab>
-                 */}
             </Container>
         );
     }

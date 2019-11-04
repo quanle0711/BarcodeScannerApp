@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 //navigation
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
+import { createDrawerNavigator } from "react-navigation-drawer";
 
 //screens
 import LoginPage from "./src/screens/Auth/login";
@@ -16,29 +17,38 @@ import Home from "./src/screens/Main/mainMenu";
 import ScanCamera from "./src/screens/Main/Scan/scanCamera";
 import ScanPage from "./src/screens/Main/Scan/scanPage";
 import AddPage from "./src/screens/Main/Scan/addPage";
+import SingleScanPage from "./src/screens/Main/Scan/singleItemScan";
 
 //Redux
 
 import { Provider } from "react-redux";
 import Store from "./src/store";
-import SingleScanPage from "./src/screens/Main/Scan/singleItemScan";
 
-const AppStack = createStackNavigator(
+
+const ScanStack = createStackNavigator(
     {
-        Home: Home,
         ScanPage: ScanPage,
         SingleScan: SingleScanPage,
         ScanCamera: ScanCamera,
-        Add: AddPage
     },
     {
         headerMode: "none",
         navigationOptions: {
             headerVisible: false
         },
-        initialRouteName: "Home"
+        initialRouteName: "ScanPage"
     }
 );
+
+const DrawerStack = createDrawerNavigator(
+    {
+        Home: Home,
+        Scan: { screen: ScanStack },
+        Add: AddPage,
+    },
+    {
+        initialRouteName: "Home"
+    });
 
 const AuthStack = createStackNavigator(
     {
@@ -47,10 +57,10 @@ const AuthStack = createStackNavigator(
         ForgotPassword: ForgotPasswordPage
     },
     {
-        // headerMode: "none",
-        // navigationOptions: {
-        //     headerVisible: false
-        // },
+        headerMode: "none",
+        navigationOptions: {
+            headerVisible: false
+        },
         initialRouteName: "Login"
     }
 );
@@ -59,8 +69,8 @@ const AppContainer = createAppContainer(
     createSwitchNavigator(
         {
             AuthLoading: AuthLoadingPage,
-            App: AppStack,
-            Auth: AuthStack
+            App: DrawerStack,
+            Auth: AuthStack,
         },
         {
             initialRouteName: "AuthLoading"

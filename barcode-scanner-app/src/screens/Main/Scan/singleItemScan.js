@@ -84,7 +84,7 @@ export default class SingleScanPage extends Component {
                     ></ImageBackground>
                 )}
             >
-                <View style={{ height: null }}>
+                <View style={{ height: 400 }}>
                     <View style={styles.buttons}>
                         <AwesomeButtonBlue
                             type="primary"
