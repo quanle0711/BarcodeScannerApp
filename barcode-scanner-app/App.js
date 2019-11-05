@@ -13,11 +13,16 @@ import LoginPage from "./src/screens/Auth/login";
 import RegisterPage from "./src/screens/Auth/register";
 import AuthLoadingPage from "./src/screens/Auth/authLoading";
 import ForgotPasswordPage from "./src/screens/Auth/forgotPassword";
+
 import Home from "./src/screens/Main/mainMenu";
+
 import ScanCamera from "./src/screens/Main/Scan/scanCamera";
 import ScanPage from "./src/screens/Main/Scan/scanPage";
-import AddPage from "./src/screens/Main/Scan/addPage";
 import SingleScanPage from "./src/screens/Main/Scan/singleItemScan";
+
+import AddPage from "./src/screens/Main/Add/addPage";
+import AddImagePicker from "./src/screens/Main/Add/addImagePicker"
+import AddImageCamera from "./src/screens/Main/Add/addImageCamera";
 
 //Redux
 
@@ -31,6 +36,8 @@ const ScanStack = createStackNavigator(
         SingleScan: SingleScanPage,
         ScanCamera: ScanCamera,
         Add: AddPage,
+        addImagePicker:AddImagePicker,
+        addImageCamera:AddImageCamera
     },
     {
         headerMode: "none",
