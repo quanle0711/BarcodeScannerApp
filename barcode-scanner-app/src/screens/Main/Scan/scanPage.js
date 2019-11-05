@@ -38,15 +38,31 @@ const styles = StyleSheet.create({
         height: null,
         width: screen.width * 0.7,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        borderRadius: 5,
     },
-    text: {
+    modalHeaderText: {
         color: "black",
-        fontSize: 22,
-        textAlign: "center"
+        fontSize: 20,
+        borderBottomWidth: 1,
+        paddingHorizontal: '2%',
+        paddingVertical: '5%',
+        fontWeight: 'bold',
+        borderColor: "#C0C0C0",
+        textTransform: 'uppercase',
+        textAlign: "center",
+    },
+    modalContextText: {
+        color: "black",
+        fontSize: 16,
+        paddingHorizontal: '2%',
+        paddingVertical: '5%',
+        borderBottomWidth: 1,
+        borderColor: "#C0C0C0",
+        textAlign: 'left',
     },
     modalTextWrap: {
-        padding:'5%'
+
     },
 
     modalBtn: {
@@ -56,6 +72,8 @@ const styles = StyleSheet.create({
     },
 
     modalBtnWrap: {
+        paddingHorizontal: '1%',
+        paddingVertical: '3%',
         width: "100%",
         flexDirection: "row"
     },
@@ -88,8 +106,8 @@ export default class scanPage extends Component {
         let exactSearch = false;
         console.log(
             "--------------searchfield: " +
-                this.state.searchField +
-                "-----------------------"
+            this.state.searchField +
+            "-----------------------"
         );
         Axios.get(
             `http://offinti.com/API/product/read1.php?action=getProduct&item=${this.state.searchField}`
@@ -189,10 +207,11 @@ export default class scanPage extends Component {
                     entry={"top"}
                 >
                     <View style={styles.modalTextWrap}>
-                        <Text style={styles.text}>
-                            We cound not find this barcode
+                        <Text style={styles.modalHeaderText}>
+                            Item not found...
                         </Text>
-                        <Text style={styles.text}>
+                        <Text style={styles.modalContextText}>
+                            We could not find any item(s) under "{this.state.searchField}" {"\n"}
                             Would you like to add this item manually?
                         </Text>
                     </View>
@@ -201,7 +220,10 @@ export default class scanPage extends Component {
                             width={null}
                             stretch={true}
                             style={styles.modalBtn}
-                            onPress={() => this.props.navigation.navigate('Add')}
+                            onPress={() => {
+                                this.props.navigation.navigate('Add');
+                                this.refs.modal.close()
+                            }}
                         >
                             <Text style={styles.modalBtnText}>Yes</Text>
                         </AwesomeButtonBlue>
@@ -238,6 +260,7 @@ export default class scanPage extends Component {
                                     backgroundColor: "#efefef",
                                     borderRadius: 5
                                 }}
+                                onFocus={() => this.setState({ searchField: '' })}
                                 placeholder="Search"
                                 value={this.state.searchField}
                                 onChangeText={searchField =>

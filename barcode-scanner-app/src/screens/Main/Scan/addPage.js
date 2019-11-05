@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { StyleSheet, Alert, KeyboardAvoidingView,SafeAreaView } from "react-native";
+import { StyleSheet, Alert, KeyboardAvoidingView, SafeAreaView, ScrollView, findNodeHandle, View, Animated } from "react-native";
+import TextInputState from 'react-native/lib/TextInputState';
+import { Pages } from 'react-native-pages';
 
 import {
-
     Form,
     Item,
     Input,
@@ -10,17 +11,24 @@ import {
     Button,
     Text,
     H1,
-    
 } from "native-base";
 import axios from "axios";
+import HeaderWithLogo from "../../../components/UI/Header/HeaderWithLogo";
 
 const url = "http://9756e40f.ngrok.io";
 
 const styles = StyleSheet.create({
-    container: {flex:1,justifyContent:"center"},
+    container: {
+        flex: 1,
+        borderRightWidth: 3,
+        borderRightColor: 'black'
+    },
     h1: {
         textAlign: "center",
-        padding: 32
+        textTransform: 'uppercase',
+        fontWeight: '400',
+        paddingVertical: '10%',
+
     },
     button: {
         marginVertical: 10,
@@ -35,9 +43,9 @@ class AddPage extends Component {
         this.state = {
             itemName: "",
             itemPrice: "",
-            itemId: "",
             itemNumber: "",
-            itemBarcode: ""
+            itemBarcode: "",
+            itemLongDesc: "",
         };
     }
 
@@ -49,126 +57,122 @@ class AddPage extends Component {
         const {
             itemName,
             itemPrice,
-            itemId,
+            itemLongDesc,
             itemNumber,
             itemBarcode
         } = this.state;
         const priceRegex = new RegExp("^d+(.d{0,2})?$");
 
-        if (itemId.length != 6) {
-            Alert.alert(
-                "Oops",
-                "the item's Product ID value must be of 6 digits",
-                [{ text: "okay", onPress: () => {} }]
-            );
-        } else if (itemNumber.length != 6) {
-            Alert.alert("Oops", "the item's number value must be of 6 digits", [
-                { text: "okay", onPress: () => {} }
-            ]);
-        } else if (itemBarcode.length != 13) {
-            Alert.alert("Oops", "the item's Barcode must have 13 digits", [
-                { text: "okay", onPress: () => {} }
-            ]);
-        } else {
-            this.submitInputs();
-        }
+        //TODO when validation needs to be checked
+        // if (itemNumber.length != 6) {
+        //     Alert.alert("Oops", "the item's number value must be of 6 digits", [
+        //         { text: "okay", onPress: () => { } }
+        //     ]);
+        // } else if (itemBarcode.length != 13) {
+        //     Alert.alert("Oops", "the item's Barcode must have 13 digits", [
+        //         { text: "okay", onPress: () => { } }
+        //     ]);
+        // } else {
+        //     this.submitInputs();
+        // }
+
+        this.submitInputs();
     };
 
     submitInputs = () => {
-        console.log("posting");
-        axios
-            .post(`${url}/products`, {
-                id: this.state.itemId,
-                product_id: this.state.itemId,
-                Itemnumber: this.state.itemNumber,
-                ItemName: this.state.itemName,
-                barcode: this.state.itemBarcode,
-                "price excl GST": this.state.itemPrice
-            })
-            .then(res => {
-                Alert.alert("Hooray!", "your submission is successful", [
-                    { text: "okay", onPress: () => {} }
-                ]);
-            })
-            .catch(err => {
-                Alert.alert("Submission failed", err, [
-                    { text: "try again", onPress: () => {} }
-                ]);
-            });
+        //TODO when Aubrey gives API end point
     };
 
-    test = () => {
-        this.props.navigation.navigate("Scan");
-    };
+    focusTextInput = (node) => {
+        try {
+            TextInputState.focusTextInput(findNodeHandle(node))
+        } catch (e) {
+            console.log("Couldn't focus text input: ", e.message)
+        }
+    }
 
     render() {
         return (
-                <KeyboardAvoidingView style={styles.container} behavior="height" enabled>
-                    <H1 style={styles.h1}>Add Item</H1>
-                    <Form>
-                        <Item fixedLabel>
-                            <Label>Item Name</Label>
-                            <Input
-                                onChangeText={itemName =>
-                                    this.setState({ itemName })
-                                }
-                            />
-                        </Item>
-                        <Item fixedLabel>
-                            <Label>Item Price</Label>
-                            <Input
-                                keyboardType="numeric"
-                                onChangeText={itemPrice =>
-                                    this.setState({ itemPrice })
-                                }
-                            />
-                        </Item>
-                        <Item fixedLabel>
-                            <Label>Product ID</Label>
-                            <Input
-                                keyboardType="numeric"
-                                onChangeText={itemId =>
-                                    this.setState({ itemId })
-                                }
-                            />
-                        </Item>
-                        <Item fixedLabel>
-                            <Label>Item Number</Label>
-                            <Input
-                                keyboardType="numeric"
-                                onChangeText={itemNumber =>
-                                    this.setState({ itemNumber })
-                                }
-                            />
-                        </Item>
-                        <Item fixedLabel>
-                            <Label>Item Barcode</Label>
-                            <Input
-                                keyboardType="numeric"
-                                onChangeText={itemBarcode =>
-                                    this.setState({ itemBarcode })
-                                }
-                            />
-                        </Item>
-                    </Form>
+            <Pages indicatorColor={"#708090"}>
+                <Animated.View>
 
-                    <Button
-                        style={styles.button}
-                        rounded
-                        full
-                        onPress={this.buttonHandler}
-                    >
-                        <Text>Submit</Text>
-                    </Button>
-                    <Button
-                        style={styles.button}
-                        rounded
-                        full
-                        onPress={this.test}
-                    >
-                        <Text>Test</Text>
-                    </Button>
-                </KeyboardAvoidingView>
+                    <KeyboardAvoidingView style={styles.container} behavior="height" enabled >
+                        <SafeAreaView>
+                            <ScrollView keyboardShouldPersistTaps='handled'>
+                                <HeaderWithLogo navigation={this.props.navigation} backBtn={true} />
+                                <H1 style={styles.h1}>Add Item to cupboard</H1>
+                                <Form>
+                                    <Item fixedLabel>
+                                        <Label>Item Name</Label>
+                                        <Input
+                                            onSubmitEditing={() => this.focusTextInput(this.refs.inputB)} returnKeyType={"next"} blurOnSubmit={false}
+                                            onChangeText={itemName =>
+                                                this.setState({ itemName })
+                                            }
+                                        />
+                                    </Item>
+                                    <Item fixedLabel style={{ paddingVertical: '2%' }}>
+                                        <Label>Long Description</Label>
+                                        <Input
+                                            ref="inputB"
+                                            multiline={true}
+
+                                            onChangeText={itemLongDesc =>
+                                                this.setState({ itemLongDesc })
+                                            }
+                                        />
+                                    </Item>
+                                    <Item fixedLabel>
+                                        <Label>Item Price</Label>
+                                        <Input
+                                            returnKeyType={"next"} blurOnSubmit={false}
+                                            onSubmitEditing={() => this.focusTextInput(this.refs.inputD)}
+                                            keyboardType="numeric"
+                                            onChangeText={itemPrice =>
+                                                this.setState({ itemPrice })
+                                            }
+                                        />
+                                    </Item>
+                                    <Item fixedLabel>
+                                        <Label>Item Number</Label>
+                                        <Input
+                                            ref="inputD" returnKeyType={"next"} blurOnSubmit={false}
+                                            onSubmitEditing={() => this.focusTextInput(this.refs.inputE)}
+                                            keyboardType="numeric"
+                                            onChangeText={itemNumber =>
+                                                this.setState({ itemNumber })
+                                            }
+                                        />
+                                    </Item>
+                                    <Item fixedLabel>
+                                        <Label>Item Barcode</Label>
+                                        <Input
+                                            ref="inputE"
+                                            keyboardType="numeric"
+                                            onChangeText={itemBarcode =>
+                                                this.setState({ itemBarcode })
+                                            }
+                                        />
+                                    </Item>
+                                </Form>
+
+                                <Button
+                                    style={styles.button}
+                                    rounded
+                                    full
+                                    onPress={this.buttonHandler}
+                                >
+                                    <Text>Next</Text>
+                                </Button>
+                            </ScrollView>
+                        </SafeAreaView>
+                    </KeyboardAvoidingView>
+                </Animated.View>
+                <Animated.View >
+                    <HeaderWithLogo navigation={this.props.navigation} backBtn={true} />
+                    <Text>Page 2</Text>
+                </Animated.View>
+            </Pages>
         );
     }
 }
