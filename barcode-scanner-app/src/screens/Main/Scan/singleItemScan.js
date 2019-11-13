@@ -8,14 +8,17 @@ import {
     Platform,
     StatusBar
 } from "react-native";
+import { Icon } from "native-base";
+
 import ParallaxScrollView from "react-native-parallax-scroll-view";
 import AwesomeButtonBlue from "react-native-really-awesome-button/src/themes/blue";
-import { Header, Button, Item, Icon, Left, Body, Right } from "native-base";
+import NumericInput from "react-native-numeric-input";
+import RNPickerSelect from "react-native-picker-select";
+
 import ProductStatusBar from "../../../components/UI/productStatusBar/productStatusBar";
 
-const ScreenHeight = Math.round(Dimensions.get("window").height);
-const ScreenWidth = Math.round(Dimensions.get("window").width);
-const parallaxHeaderHeight = ScreenHeight * 0.5;
+const screen = Dimensions.get('window');
+const parallaxHeaderHeight = screen.height * 0.5;
 
 const styles = StyleSheet.create({
     header: {
@@ -85,45 +88,55 @@ export default class SingleScanPage extends Component {
             >
                 <View style={{}}>
                     <ProductStatusBar />
+                    <View>
+                        <RNPickerSelect
+                            onValueChange={value => console.log(value)}
+                            style={{ flex: 3, paddingRight: 30 }}
+                            placeholder={{ label: "Add to...", value: null }}
+                            items={[
+                                { label: "VPS", value: "VPS" },
+                                { label: "Tender", value: "Tender" },
+                                {
+                                    label: "Purchase Order",
+                                    value: "Purchase Order"
+                                },
+                                {
+                                    label: "Goods Received",
+                                    value: "Goods Received"
+                                },
+                                {
+                                    label: "Goods Returned",
+                                    value: "Goods Returned"
+                                }
+                            ]}
+                            useNativeAndroidPickerStyle={true}
+                        />
+                    </View>
                     <View style={styles.buttons}>
                         <AwesomeButtonBlue
                             type="primary"
                             width={null}
                             stretch={true}
                             style={{
-                                flex:1,
+                                flex: 1,
                                 marginHorizontal: "1%",
                                 marginVertical: "1%"
                             }}
                         >
-                            <Text style={{ color: "#fff" }}>Add to VPS</Text>
+                            <Text style={{ color: "#fff" }}>Add</Text>
                         </AwesomeButtonBlue>
-                        <AwesomeButtonBlue
-                            type="secondary"
-                            width={null}
-                            stretch={true}
-                            style={{
-                                flex:1,
-                                marginHorizontal: "1%",
-                                marginVertical: "1%"
+                        <NumericInput
+                            rounded={true}
+                            minValue={0}
+                            totalHeight={50}
+                            containerStyle={{
+                                marginTop: 6,
+                                marginBottom: 6,
+                                marginRight: "1%"
                             }}
-                        >
-                            <Text style={{ color: "#444" }}>
-                                Add to Purchase
-                            </Text>
-                        </AwesomeButtonBlue>
-                        <AwesomeButtonBlue
-                            type="primary"
-                            width={null}
-                            stretch={true}
-                            style={{
-                                flex:1,
-                                marginHorizontal: "1%",
-                                marginVertical: "1%"
-                            }}
-                        >
-                            <Text style={{ color: "#444" }}>Add to Tender</Text>
-                        </AwesomeButtonBlue>
+                            totalWidth={screen.width * 0.49}
+                            onChange={value => console.log(value)}
+                        />
                     </View>
                     <View style={styles.nameSegment}>
                         <Text

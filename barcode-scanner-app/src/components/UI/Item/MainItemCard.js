@@ -1,22 +1,31 @@
 import React, { Component } from "react";
-import { StyleSheet, ImageBackground, View, Animated, Dimensions,Text } from "react-native";
 import {
-    Card,
-    CardItem,
-} from "native-base";
-import AwesomeButtonBlue from "react-native-really-awesome-button/src/themes/blue";
+    StyleSheet,
+    ImageBackground,
+    View,
+    Animated,
+    Dimensions,
+    Text
+} from "react-native";
 import ProductStatusBar from "../productStatusBar/productStatusBar";
-const ScreenHeight = Math.round(Dimensions.get('window').height);
-const ScreenWidth = Math.round(Dimensions.get('window').width);
-import RNPickerSelect from 'react-native-picker-select';
+
+const screen = Dimensions.get("window");
+
+import AwesomeButtonBlue from "react-native-really-awesome-button/src/themes/blue";
+import RNPickerSelect from "react-native-picker-select";
+import NumericInput from 'react-native-numeric-input';
 
 const styles = StyleSheet.create({
     image: {
-        height: ScreenHeight * 0.5,
-        width: '100%',
+        height: screen.height * 0.5,
+        width: "100%"
     },
     buttons: {
-        borderBottomWidth: 1
+        flexDirection: "row",
+        justifyContent:'center',
+        flex: 1,
+        borderBottomWidth: 1,
+        borderTopWidth: 1
     },
     nameSegment: {
         borderBottomWidth: 1
@@ -26,7 +35,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         borderBottomWidth: 1
     }
-})
+});
 const MainItemCard = props => {
     //props:image, name, price, quantity, ean, id
 
@@ -37,25 +46,51 @@ const MainItemCard = props => {
                     uri: `http://offinti.com/image/${props.image}`
                 }}
                 resizeMode="contain"
-                style={styles.image} />
+                style={styles.image}
+            />
             <ProductStatusBar />
             <View>
-                <View style={styles.buttons}>
-                    
+                <View>
                     <RNPickerSelect
-                        onValueChange={(value) => console.log(value)}
-                        style={{flex:3, paddingRight:30}}
-                        placeholder={{label: "Add to...", value: null}}
+                        onValueChange={value => console.log(value)}
+                        style={{ flex: 3, paddingRight: 30 }}
+                        placeholder={{ label: "Add to...", value: null }}
                         items={[
-                            { label: 'VPS', value: 'VPS' },
-                            { label: 'Tender', value: 'Tender'},
-                            { label: 'Purchase Order', value: 'Purchase Order' },
-                            { label: 'Goods Received', value: 'Goods Received'},
-                            { label: 'Goods Returned', value: 'Goods Returned' },
+                            { label: "VPS", value: "VPS" },
+                            { label: "Tender", value: "Tender" },
+                            {
+                                label: "Purchase Order",
+                                value: "Purchase Order"
+                            },
+                            {
+                                label: "Goods Received",
+                                value: "Goods Received"
+                            },
+                            { label: "Goods Returned", value: "Goods Returned" }
                         ]}
                         useNativeAndroidPickerStyle={true}
                     />
-
+                </View>
+                <View style={styles.buttons}>
+                    <AwesomeButtonBlue
+                        type="primary"
+                        width={null}
+                        stretch={true}
+                        style={{
+                            flex: 1,
+                            marginHorizontal: "1%",
+                            marginVertical: "1%"
+                        }}
+                    >
+                        <Text style={{ color: "#fff" }}>Add</Text>
+                    </AwesomeButtonBlue>
+                    <NumericInput 
+                    rounded={true}
+                    minValue={0}
+                    totalHeight={50}
+                    containerStyle={{marginTop:6,marginBottom:6, marginRight:'1%'}}
+                    totalWidth={screen.width * 0.49}
+                    onChange={value => console.log(value)} />
                 </View>
                 <View style={styles.nameSegment}>
                     <Text
@@ -82,7 +117,7 @@ const MainItemCard = props => {
                         }}
                     >
                         ${Number(props.price).toFixed(2)}NZD
-                        </Text>
+                    </Text>
                     <Text
                         style={{
                             flex: 1,

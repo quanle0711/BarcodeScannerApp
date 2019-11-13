@@ -1,21 +1,13 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image } from "react-native";
-import {
-    Container,
-    Button,
-    Text,
-    H1,
-    Form,
-    Item,
-    Input,
-    Label
-} from "native-base";
+import { StyleSheet, View, Image, Alert, ScrollView } from "react-native";
+import { Container, Button, Text, Form, Item, Input } from "native-base";
 
 import Logo from "../../../assets/logo/OFFINTI-logo.png";
 //redux
 
 import { connect } from "react-redux";
 import { setUserToken } from "../../store/actions/actions";
+import Axios from "axios";
 
 const styles = StyleSheet.create({
     container: {
@@ -32,8 +24,8 @@ const styles = StyleSheet.create({
     },
     button: {
         marginHorizontal: "10%",
-        marginVertical:'1.5%',
-        justifyContent: 'center'
+        marginVertical: "1.5%",
+        justifyContent: "center"
     }
 });
 
@@ -45,7 +37,8 @@ class LoginPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            emailField: ""
+            emailField: "",
+            passwordField: ""
         };
     }
 
@@ -58,7 +51,10 @@ class LoginPage extends Component {
     };
     render() {
         return (
-            <Container style={styles.container}>
+            <ScrollView
+                keyboardShouldPersistTaps="handled"
+                contentContainerStyle={styles.container}
+            >
                 <View style={{ alignItems: "center" }}>
                     <Image
                         style={{ width: "80%" }}
@@ -91,7 +87,13 @@ class LoginPage extends Component {
                             paddingHorizontal: 0
                         }}
                     >
-                        <Input secureTextEntry={true} placeholder="Password" />
+                        <Input
+                            secureTextEntry={true}
+                            placeholder="Password"
+                            onChangeText={passwordField =>
+                                this.setState({ passwordField })
+                            }
+                        />
                     </Item>
                 </Form>
                 <View style={styles.buttonContainer}>
@@ -118,18 +120,47 @@ class LoginPage extends Component {
                         <Text>I forgot my password</Text>
                     </Button>
                 </View>
-            </Container>
+            </ScrollView>
         );
     }
 
     loginAsync = () => {
-        this.props
-            .setUserToken(this.state.emailField)
-            .then(() => {
-                this.props.navigation.navigate("App");
+        const { emailField, passwordField } = this.state;
+
+        Axios.get("http://offinti.com/API/customer/read.php", {
+            params: {
+                email: emailField,
+                password: passwordField
+            }
+        })
+            .then(res => {
+                if (typeof res.data.records != "undefined") {
+                    //a record is found
+                    this.props
+                        .setUserToken(emailField)
+                        .then(() => {
+                            this.props.navigation.navigate("App");
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        });
+                } else {
+                    //nothing is returned
+                    Alert.alert(
+                        "Account not found",
+                        "Either this account does not exist or your credentials are invalid",
+                        [
+                            {
+                                text: "Try again"
+                            }
+                            //more buttons go here
+                        ],
+                        { cancelable: false }
+                    );
+                }
             })
             .catch(err => {
-                console.log(err);
+                //todo
             });
     };
 }

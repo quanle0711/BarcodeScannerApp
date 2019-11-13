@@ -80,8 +80,7 @@ class AddPage extends Component {
         };
     }
     componentDidMount = () => {
-        console.log("barcode? " + this.props.navigation.state.params.barcode);
-        this.props.navigation.state.params.barcode == null ?
+        this.props.navigation.getParam('barcode') == null ?
             null :
             this.setState({ itemBarcode: this.props.navigation.getParam('barcode') });
     }
@@ -101,18 +100,6 @@ class AddPage extends Component {
         const priceRegex = new RegExp("^d+(.d{0,2})?$");
 
         //TODO when validation needs to be checked
-        // if (itemNumber.length != 6) {
-        //     Alert.alert("Oops", "the item's number value must be of 6 digits", [
-        //         { text: "okay", onPress: () => { } }
-        //     ]);
-        // } else if (itemBarcode.length != 13) {
-        //     Alert.alert("Oops", "the item's Barcode must have 13 digits", [
-        //         { text: "okay", onPress: () => { } }
-        //     ]);
-        // } else {
-        //     this.submitInputs();
-        // }
-
         this.submitInputs();
     };
 
