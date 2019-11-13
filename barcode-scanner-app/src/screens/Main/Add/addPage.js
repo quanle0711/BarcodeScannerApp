@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
-    
+
     h1: {
         textAlign: "center",
         textTransform: "uppercase",
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
 
     imageBtnsText: {
         fontSize: 22,
-        textAlign:"center",
+        textAlign: "center",
         color: "#fff",
         fontWeight: "bold"
     }
@@ -78,6 +78,12 @@ class AddPage extends Component {
             itemImageURI: null,
             imgUpload: false
         };
+    }
+    componentDidMount = () => {
+        console.log("barcode? " + this.props.navigation.state.params.barcode);
+        this.props.navigation.state.params.barcode == null ?
+            null :
+            this.setState({ itemBarcode: this.props.navigation.getParam('barcode') });
     }
 
     buttonHandler = () => {
@@ -110,8 +116,23 @@ class AddPage extends Component {
         this.submitInputs();
     };
 
-    submitInputs = () => {
+    submitBtnHandler = () => {
         //TODO when Aubrey gives API end point
+        Alert.alert(
+            'Alert Title',
+            'My Alert Msg',
+            [
+                { text: 'Ask me later', onPress: () => console.log('Ask me later pressed') },
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                { text: 'OK', onPress: () => console.log('OK Pressed') },
+            ],
+            { cancelable: false },
+        );
+        this.props.navigation.goBack();
     };
 
     focusTextInput = node => {
@@ -232,6 +253,7 @@ class AddPage extends Component {
                                 <Item fixedLabel>
                                     <Label>Item Barcode</Label>
                                     <Input
+                                        value={this.state.itemBarcode}
                                         ref="inputE"
                                         keyboardType="numeric"
                                         onChangeText={itemBarcode =>
@@ -298,13 +320,14 @@ class AddPage extends Component {
                             width={null}
                             stretch={true}
                             style={styles.imageBtns}
+                            onPress={this.submitBtnHandler}
                         >
                             <Text style={styles.imageBtnsText}>
                                 Submit
                             </Text>
                         </AwesomeButtonBlue>
                     </View>
-                    
+
                 </SafeAreaView>
             </Pages>
         );

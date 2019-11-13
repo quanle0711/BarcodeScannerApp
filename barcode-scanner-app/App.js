@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
+import {Icon} from 'native-base';
 
 //navigation
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
@@ -28,6 +29,7 @@ import AddImageCamera from "./src/screens/Main/Add/addImageCamera";
 
 import { Provider } from "react-redux";
 import Store from "./src/store";
+import SideDrawer from "./src/components/UI/Drawer/SideDrawer";
 
 
 const ScanStack = createStackNavigator(
@@ -51,11 +53,22 @@ const ScanStack = createStackNavigator(
 const DrawerStack = createDrawerNavigator(
     {
         Home: Home,
-        Scan: { screen: ScanStack },
-        
+        Scan: { screen: ScanStack,
+            navigationOptions: () => 
+                ({
+                    title: 'Search',
+                    drawerIcon: (
+                        <Icon name='search1' type='AntDesign'/>
+                    )
+                }) 
+        },
     },
     {
-        initialRouteName: "Home"
+        initialRouteName: "Home",
+        contentComponent:SideDrawer,
+        drawerOpenRoute: 'DrawerOpen',
+        drawerCloseRoute: 'DrawerClose',
+        drawerToggleRoute: 'DrawerToggle',
     });
 
 const AuthStack = createStackNavigator(

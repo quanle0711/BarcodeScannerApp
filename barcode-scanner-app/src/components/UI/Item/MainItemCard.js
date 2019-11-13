@@ -1,30 +1,21 @@
 import React, { Component } from "react";
-import { StyleSheet, ImageBackground, View, Animated, Dimensions } from "react-native";
+import { StyleSheet, ImageBackground, View, Animated, Dimensions,Text } from "react-native";
 import {
     Card,
     CardItem,
-    Text,
 } from "native-base";
 import AwesomeButtonBlue from "react-native-really-awesome-button/src/themes/blue";
 import ProductStatusBar from "../productStatusBar/productStatusBar";
 const ScreenHeight = Math.round(Dimensions.get('window').height);
 const ScreenWidth = Math.round(Dimensions.get('window').width);
-var imagePos = new Animated.Value(0);
+import RNPickerSelect from 'react-native-picker-select';
 
 const styles = StyleSheet.create({
     image: {
         height: ScreenHeight * 0.5,
         width: '100%',
-        // transform: [{
-        //     translateY: imagePos.interpolate({
-        //         inputRange: [0, 1],
-        //         outputRange: [0, 100]
-        //     })
-        //}]
     },
     buttons: {
-        flexDirection: "row",
-        flex: 1,
         borderBottomWidth: 1
     },
     nameSegment: {
@@ -32,7 +23,7 @@ const styles = StyleSheet.create({
     },
 
     extraInfo1: {
-        flexDirection:"row",
+        flexDirection: "row",
         borderBottomWidth: 1
     }
 })
@@ -47,35 +38,24 @@ const MainItemCard = props => {
                 }}
                 resizeMode="contain"
                 style={styles.image} />
-            <ProductStatusBar/>
+            <ProductStatusBar />
             <View>
                 <View style={styles.buttons}>
-                    <AwesomeButtonBlue
-                        type="primary"
-                        width={null}
-                        stretch={true}
-                        style={{
-                            flex:1,
-                            marginHorizontal: "1%",
-                            marginVertical: "1%"
-                        }}
-                    >
-                        <Text style={{ color: "#fff" }}>Add to VPS</Text>
-                    </AwesomeButtonBlue>
-                    <AwesomeButtonBlue
-                        type="secondary"
-                        width={null}
-                        stretch={true}
-                        style={{
-                            flex:1,
-                            marginHorizontal: "1%",
-                            marginVertical: "1%"
-                        }}
-                    >
-                        <Text style={{ color: "#444" }}>
-                            Add to Purchase
-                            </Text>
-                    </AwesomeButtonBlue>
+                    
+                    <RNPickerSelect
+                        onValueChange={(value) => console.log(value)}
+                        style={{flex:3, paddingRight:30}}
+                        placeholder={{label: "Add to...", value: null}}
+                        items={[
+                            { label: 'VPS', value: 'VPS' },
+                            { label: 'Tender', value: 'Tender'},
+                            { label: 'Purchase Order', value: 'Purchase Order' },
+                            { label: 'Goods Received', value: 'Goods Received'},
+                            { label: 'Goods Returned', value: 'Goods Returned' },
+                        ]}
+                        useNativeAndroidPickerStyle={true}
+                    />
+
                 </View>
                 <View style={styles.nameSegment}>
                     <Text

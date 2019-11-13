@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 
 export default class scanPage extends Component {
     static navigationOptions = {
-        header: null
+        header: null,
     };
 
     constructor(props) {
@@ -96,11 +96,12 @@ export default class scanPage extends Component {
             searchField: "",
             searchResult: [],
             exactSearch: false,
+            fromBarcode: false,
             renderSingleItem: {}
         };
     }
 
-    searchBarHandler = () => {
+    searchBarHandler = (fromBarcode) => {
         //hide keyboard
         Keyboard.dismiss();
         let exactSearch = false;
@@ -134,6 +135,7 @@ export default class scanPage extends Component {
 
                 this.setState({
                     exactSearch: exactSearch,
+                    fromBarcode: fromBarcode,
                     searchResult: results
                 });
             })
@@ -151,7 +153,7 @@ export default class scanPage extends Component {
 
     onScanReturn = async params => {
         await this.setState({ searchField: params });
-        this.searchBarHandler();
+        this.searchBarHandler(true);
     };
 
     exactSearchHandler = item => {
@@ -221,8 +223,8 @@ export default class scanPage extends Component {
                             stretch={true}
                             style={styles.modalBtn}
                             onPress={() => {
-                                this.props.navigation.navigate('Add');
-                                this.refs.modal.close()
+                                this.props.navigation.navigate('Add', {barcode:  this.state.fromBarcode ? this.state.searchField : null });
+                                this.refs.modal.close();
                             }}
                         >
                             <Text style={styles.modalBtnText}>Yes</Text>
@@ -273,7 +275,7 @@ export default class scanPage extends Component {
                             type="secondary"
                             height={36}
                             style={{ marginHorizontal: "2%" }}
-                            onPress={this.searchBarHandler}
+                            onPress={() => this.searchBarHandler(false)}
                         >
                             <Icon name="ios-search" />
                         </AwesomeButtonBlue>

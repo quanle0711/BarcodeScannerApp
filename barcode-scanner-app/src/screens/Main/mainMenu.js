@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Image, Platform, StatusBar } from "react-native";
-import { Container, Button, Text, H1, Content } from "native-base";
+import { Container, Button, Text, H1, Content, Icon } from "native-base";
 
 //redux
 import { connect } from "react-redux";
@@ -34,7 +34,10 @@ const styles = StyleSheet.create({
 class Home extends Component {
     //Navigation
     static navigationOptions = {
-        header: null
+        header: null,
+        drawerIcon: (
+            <Icon name='home' type='AntDesign'/>
+        )
     };
 
     render() {

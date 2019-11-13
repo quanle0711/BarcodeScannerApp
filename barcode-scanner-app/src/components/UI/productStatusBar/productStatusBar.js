@@ -65,7 +65,7 @@ const productStatusBar = props => {
                 </View>
             </View>
             <View style={styles.infoItem}>
-                <Text style={styles.infoText}>GR</Text>
+                <Text style={{...styles.infoText, color:'green'}}>GR</Text>
                 <View style={styles.badgeStyle}>
                     <Text style={styles.badgeText}>2</Text>
                 </View>
@@ -77,7 +77,7 @@ const productStatusBar = props => {
                 </View>
             </View>
             <View style={styles.infoItem}>
-                <Text style={styles.infoText}>GR</Text>
+                <Text style={{...styles.infoText, color:'red'}}>GR</Text>
                 <View style={styles.badgeStyle}>
                     <Text style={styles.badgeText}>2</Text>
                 </View>
